@@ -108,7 +108,7 @@ export default function GenerateDocument() {
       const token = session?.access_token;
 
       // Fazer requisição ao nosso servidor backend Express
-      const response = await fetch('http://localhost:5000/api/documents/generate', {
+      const response = await fetch('https://doc-generator-lrv6.onrender.com/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
