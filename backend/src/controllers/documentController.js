@@ -267,17 +267,40 @@ function applyLetterhead(content, visualIdentity, title) {
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
       <style>
         ${themeStyles}
-        /* Garantias de impressão */
+        /* Garantias de impressão com alta fidelidade */
         @media print {
-          body {
-            background-color: #ffffff;
-            padding: 0;
+          @page {
+            size: A4;
+            margin: 0; /* Remove as margens padrões do navegador para controle total */
+          }
+          html, body {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 210mm !important;
+            height: 297mm !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
           }
           .page {
-            box-shadow: none;
-            width: 100%;
-            min-height: auto;
-            border-left: none; /* remove bordas extras para impressão limpa se necessário */
+            box-shadow: none !important;
+            width: 210mm !important;
+            min-height: 297mm !important;
+            padding: ${margins.top} ${margins.right} ${margins.bottom} ${margins.left} !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+            position: relative !important;
+            background-color: #ffffff !important;
+            border-collapse: collapse !important;
+            /* Mantém as bordas e cores originais de cada tema */
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          /* Enforça fidelidade de cores de background e texto para todos os elementos */
+          * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
           }
         }
       </style>
@@ -298,7 +321,7 @@ function applyLetterhead(content, visualIdentity, title) {
 // Controller Principal
 export const generateDocument = async (req, res, next) => {
   try {
-    const { template_id, form_data } = req.body;
+    const { template_id, form_data, document_title } = req.body;
 
     if (!template_id) {
       return res.status(400).json({ error: 'O parâmetro template_id é obrigatório.' });
@@ -336,17 +359,97 @@ export const generateDocument = async (req, res, next) => {
       });
     }
 
+    // 2b. Buscar os campos do template para ler configurações extras (como o formato do repetidor de cláusulas)
+    const { data: fields, error: fieldsError } = await supabase
+      .from('template_fields')
+      .select('*')
+      .eq('template_id', template_id)
+      .order('display_order', { ascending: true });
+
+    if (fieldsError) {
+      console.warn('⚠️ Erro ao buscar template_fields (continuando com dados básicos):', fieldsError.message);
+    }
+
+    const fieldsMap = {};
+    if (fields) {
+      fields.forEach(f => {
+        let config = {};
+        if (f.placeholder && f.placeholder.startsWith('{') && f.placeholder.endsWith('}')) {
+          try {
+            config = JSON.parse(f.placeholder);
+          } catch (e) {
+            // Não é um JSON válido
+          }
+        }
+        fieldsMap[f.key] = {
+          ...f,
+          config
+        };
+      });
+    }
+
     // 3. Executar o motor de substituição (Regex) no conteúdo do template
     let compiledContent = template.content;
+
+    // A. Processar blocos condicionais [if chave] ... [/if] ou [if chave == "valor"] ... [/if] no conteúdo
+    let previousContent = '';
+    let safetyCounter = 0;
+    while (compiledContent !== previousContent && safetyCounter < 5) {
+      previousContent = compiledContent;
+      safetyCounter++;
+      compiledContent = compiledContent.replace(/\[if\s+([a-zA-Z0-9_]+)(?:\s*(==|!=)\s*(["'])(.*?)\3)?\]([\s\S]*?)\[\/if\]/g, (match, key, operator, quote, val, body) => {
+        const fieldValue = form_data ? form_data[key] : undefined;
+        
+        // Se não há operador, checa se o valor é "truthy" ou "true" ou "Sim"
+        if (!operator) {
+          const isTruthy = fieldValue === true || fieldValue === 'true' || fieldValue === 'Sim' || (fieldValue && fieldValue !== 'Não' && fieldValue !== 'false');
+          return isTruthy ? body : '';
+        }
+        
+        // Se há operador (== ou !=)
+        if (operator === '==') {
+          return String(fieldValue) === String(val) ? body : '';
+        } else if (operator === '!=') {
+          return String(fieldValue) !== String(val) ? body : '';
+        }
+        
+        return '';
+      });
+    }
     
-    // Substitui cada ocorrência do tipo {nome_campo} pelo valor correspondente em form_data
+    // B. Substitui cada ocorrência do tipo {nome_campo} pelo valor correspondente em form_data
     compiledContent = compiledContent.replace(/\{([a-zA-Z0-9_]+)\}/g, (match, key) => {
       if (form_data && form_data[key] !== undefined && form_data[key] !== null) {
+        const val = form_data[key];
+
+        // Se o valor for um Array (repetidor de cláusulas 'clause_adder')
+        if (Array.isArray(val)) {
+          const fieldConfig = fieldsMap[key]?.config || {};
+          const listType = fieldConfig.listType || 'ul'; // 'ul', 'ol', 'p'
+          
+          const filteredArray = val.map(item => String(item).trim()).filter(item => item !== '');
+          if (filteredArray.length === 0) {
+            return '';
+          }
+          
+          if (listType === 'p') {
+            return filteredArray.map(item => `<p>${xss(item)}</p>`).join('\n');
+          }
+          
+          const tag = listType === 'ol' ? 'ol' : 'ul';
+          const listStyle = 'margin: 10px 0; padding-left: 20px;';
+          return `<${tag} style="${listStyle}">` + filteredArray.map(item => `<li style="margin-bottom: 5px;">${xss(item)}</li>`).join('') + `</${tag}>`;
+        }
+
+        // Se for booleano, converte amigavelmente
+        if (typeof val === 'boolean') {
+          return val ? 'Sim' : 'Não';
+        }
+
         // Sanitizar valor inserido contra ataques XSS
-        return xss(String(form_data[key]));
+        return xss(String(val));
       }
       // Se a variável estiver no texto mas não no formulário preenchido, mantém ou remove. 
-      // Por padrão empresarial, manteremos o marcador visualizado ou vazio se desejado.
       return `<span style="color: #ef4444; font-weight: bold;">[${key} não preenchido]</span>`;
     });
 
@@ -366,7 +469,7 @@ export const generateDocument = async (req, res, next) => {
         .insert({
           template_id: template.id,
           user_id: template.user_id, // Atribui ao dono do template
-          title: `Cópia Gerada - ${template.title}`,
+          title: document_title || `Cópia Gerada - ${template.title}`,
           form_data: form_data || {},
           rendered_content: finalHTML
         })

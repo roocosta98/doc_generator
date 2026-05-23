@@ -1,25 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { FileText, Printer, FileDown, Trash2, Eye, X, Loader2, Sparkles } from 'lucide-react';
+import { Plus, Search, Trash2, FileText, Eye, X, Printer, FileDown, Sparkles, Loader2, AlertCircle } from 'lucide-react';
+import GenerateDocument from './GenerateDocument';
 
 const supabase = createClient(
   'https://raxmdrunbidfmlvsldnj.supabase.co',
   'sb_publishable_L-ktxwLir7iUTMCVF1Gaew_bI0kYbKT'
 );
 
-export default function DocumentList() {
+export default function Documents({
+  preSelectedTemplateId,
+  setPreSelectedTemplateId,
+  autoOpenGenerateModal,
+  setAutoOpenGenerateModal
+}) {
   const [documents, setDocuments] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedDoc, setSelectedDoc] = useState(null); // Documento aberto no modal de visualização
+  const [isGenerateModalOpen, setIsGenerateModalOpen] = useState(false);
+  const [selectedDoc, setSelectedDoc] = useState(null); // Documento aberto no modal de visualização do histórico
   const [isDeletingId, setIsDeletingId] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
+  // 1. Carregar documentos do Supabase
   useEffect(() => {
     fetchDocuments();
   }, []);
 
+  // 2. Tratar abertura automática do modal de emissão externa (redirecionamento)
+  useEffect(() => {
+    if (autoOpenGenerateModal) {
+      setIsGenerateModalOpen(true);
+      if (setAutoOpenGenerateModal) {
+        setAutoOpenGenerateModal(false);
+      }
+    }
+  }, [autoOpenGenerateModal, setAutoOpenGenerateModal]);
+
   const fetchDocuments = async () => {
     setIsLoading(true);
+    setErrorMessage('');
     try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('Usuário não autenticado.');
+
       const { data, error } = await supabase
         .from('documents')
         .select(`
@@ -31,12 +55,14 @@ export default function DocumentList() {
             title
           )
         `)
+        .eq('user_id', user.id)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
       setDocuments(data || []);
     } catch (err) {
       console.error('❌ Erro ao buscar documentos:', err);
+      setErrorMessage('Não foi possível carregar o histórico de documentos.');
     } finally {
       setIsLoading(false);
     }
@@ -55,7 +81,7 @@ export default function DocumentList() {
         .eq('id', id);
 
       if (error) throw error;
-      
+
       setDocuments(documents.filter(d => d.id !== id));
       if (selectedDoc?.id === id) {
         setSelectedDoc(null);
@@ -88,29 +114,100 @@ export default function DocumentList() {
     document.body.removeChild(link);
   };
 
+  // Filtrar documentos pela busca textual (nome do documento ou nome do modelo de origem)
+  const filteredDocuments = documents.filter(doc => {
+    const titleMatch = doc.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const templateTitle = doc.templates?.title || '';
+    const templateMatch = templateTitle.toLowerCase().includes(searchQuery.toLowerCase());
+    return titleMatch || templateMatch;
+  });
+
   return (
     <div className="container">
-      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '32px', marginBottom: '8px', background: 'linear-gradient(135deg, #fff, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-          Histórico de Documentos Emitidos
-        </h1>
-        <p style={{ color: 'var(--text-secondary)' }}>Acesse, imprima ou faça o download de todos os contratos que você já emitiu.</p>
+      {/* Cabeçalho da Tela */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}>
+        <div>
+          <h1 style={{ fontSize: '32px', marginBottom: '4px', background: 'linear-gradient(135deg, #fff, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            Documentos Emitidos
+          </h1>
+          <p style={{ color: 'var(--text-secondary)' }}>Acesse o histórico completo de contratos e declarações gerados pelo sistema.</p>
+        </div>
+
+        <button className="btn btn-primary" onClick={() => {
+          setPreSelectedTemplateId('');
+          setIsGenerateModalOpen(true);
+        }}>
+          <Plus size={18} /> Novo Documento
+        </button>
       </div>
 
-      {isLoading ? (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', padding: '60px 0' }}>
-          <Loader2 style={{ animation: 'spin 1s linear infinite' }} size={32} color="var(--primary)" />
-          <span style={{ color: 'var(--text-secondary)' }}>Buscando histórico do banco...</span>
+      {errorMessage && (
+        <div style={{
+          padding: '16px',
+          borderRadius: 'var(--radius-sm)',
+          backgroundColor: 'rgba(239, 68, 68, 0.15)',
+          border: '1px solid var(--danger)',
+          color: '#f87171',
+          marginBottom: '24px',
+          display: 'flex',
+          gap: '8px',
+          alignItems: 'center'
+        }}>
+          <AlertCircle size={18} />
+          <span>{errorMessage}</span>
         </div>
-      ) : documents.length === 0 ? (
+      )}
+
+      {/* Barra de Filtros e Busca */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        marginBottom: '32px'
+      }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: '360px' }}>
+          <Search size={16} color="var(--text-muted)" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
+          <input
+            type="text"
+            className="input-field"
+            style={{ paddingLeft: '40px' }}
+            placeholder="Pesquisar por título ou modelo de origem..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+      </div>
+
+      {/* Listagem em Tabela */}
+      {isLoading ? (
+        <div style={{ textAlign: 'center', padding: '60px 0', color: 'var(--text-secondary)' }}>
+          <div style={{
+            width: '40px',
+            height: '40px',
+            border: '4px solid var(--bg-card-border)',
+            borderTopColor: 'var(--primary)',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite',
+            margin: '0 auto 16px auto'
+          }}></div>
+          <span>Buscando histórico de documentos...</span>
+        </div>
+      ) : filteredDocuments.length === 0 ? (
         <div className="card" style={{ textAlign: 'center', padding: '60px 24px', border: '1px dashed var(--bg-card-border)' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', justifySelf: 'center', width: '56px', height: '56px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.02)', color: 'var(--text-muted)', marginBottom: '16px', justifyContent: 'center' }}>
-            <FileText size={28} />
-          </div>
-          <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '6px' }}>Nenhum documento emitido</h3>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '14px', maxWidth: '380px', margin: '0 auto 24px auto' }}>
-            Você ainda não preencheu nenhum formulário de template para gerar documentos.
+          <FileText size={48} color="var(--text-muted)" style={{ margin: '0 auto 16px auto', display: 'block', opacity: 0.5 }} />
+          <h3 style={{ fontSize: '18px', marginBottom: '8px' }}>Nenhum documento encontrado</h3>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: '400px', margin: '0 auto 24px auto', fontSize: '14px' }}>
+            {searchQuery
+              ? 'Nenhum documento do histórico corresponde aos critérios de pesquisa.'
+              : 'Você ainda não gerou nenhum documento. Clique no botão acima para criar o seu primeiro!'}
           </p>
+          {!searchQuery && (
+            <button className="btn btn-primary" onClick={() => {
+              setPreSelectedTemplateId('');
+              setIsGenerateModalOpen(true);
+            }}>
+              <Plus size={18} /> Emitir Primeiro Documento
+            </button>
+          )}
         </div>
       ) : (
         <div className="card" style={{ padding: '0', overflow: 'hidden' }}>
@@ -125,7 +222,7 @@ export default function DocumentList() {
                 </tr>
               </thead>
               <tbody>
-                {documents.map((doc) => (
+                {filteredDocuments.map((doc) => (
                   <tr key={doc.id} style={{ borderBottom: '1px solid var(--bg-card-border)', transition: 'var(--transition-fast)' }} className="table-row-hover">
                     <td style={{ padding: '18px 24px', fontWeight: '700', color: 'white' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -143,11 +240,11 @@ export default function DocumentList() {
                       <div style={{ display: 'inline-flex', gap: '8px' }}>
                         <button
                           className="btn btn-secondary"
-                          style={{ padding: '8px 12px', borderRadius: '6px', fontSize: '12px' }}
+                          style={{ padding: '8px 12px', borderRadius: '6px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
                           onClick={() => setSelectedDoc(doc)}
                           title="Visualizar documento"
                         >
-                          <Eye size={14} /> Visualizar
+                          <Eye size={13} /> Visualizar
                         </button>
                         <button
                           className="btn btn-danger"
@@ -168,7 +265,31 @@ export default function DocumentList() {
         </div>
       )}
 
-      {/* MODAL DE VISUALIZAÇÃO COMPLETA */}
+      {/* MODAL DE EMISSÃO (NOVO DOCUMENTO) */}
+      {isGenerateModalOpen && (
+        <div className="modal-backdrop" onClick={(e) => e.target.className === 'modal-backdrop' && setIsGenerateModalOpen(false)}>
+          <div className="modal-content" style={{ maxWidth: '1250px', width: '95vw' }}>
+            <button className="modal-close-btn" onClick={() => setIsGenerateModalOpen(false)} title="Fechar Emissor">
+              <X size={18} />
+            </button>
+            <div style={{ borderBottom: '1px solid var(--bg-card-border)', padding: '24px 32px 16px 32px' }}>
+              <h2 style={{ fontSize: '20px', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '800' }}>
+                <Sparkles size={20} color="var(--primary)" /> Gerar Novo Documento Timbrado
+              </h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '13px' }}>Preencha os campos exigidos pelo template para realizar a compilação.</p>
+            </div>
+            <div style={{ overflowY: 'auto', flex: 1 }}>
+              <GenerateDocument
+                preSelectedTemplateId={preSelectedTemplateId}
+                onClose={() => setIsGenerateModalOpen(false)}
+                onSuccess={fetchDocuments}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL DE VISUALIZAÇÃO COMPLETA (HISTÓRICO) */}
       {selectedDoc && (
         <div style={{
           position: 'fixed',
@@ -197,21 +318,21 @@ export default function DocumentList() {
             {/* Header do Modal */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--bg-card-border)', paddingBottom: '16px' }}>
               <div>
-                <h2 style={{ fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <h2 style={{ fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '800' }}>
                   <Sparkles size={20} color="var(--secondary)" /> Visualizador de Histórico
                 </h2>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>{selectedDoc.title}</p>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                <button className="btn btn-secondary" style={{ padding: '8px 14px', borderRadius: '8px' }} onClick={handlePrint}>
+                <button className="btn btn-secondary" style={{ padding: '8px 14px', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '6px' }} onClick={handlePrint}>
                   <Printer size={14} /> Imprimir / PDF
                 </button>
-                <button className="btn btn-secondary" style={{ padding: '8px 14px', borderRadius: '8px' }} onClick={() => handleDownloadHtml(selectedDoc)}>
+                <button className="btn btn-secondary" style={{ padding: '8px 14px', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '6px' }} onClick={() => handleDownloadHtml(selectedDoc)}>
                   <FileDown size={14} /> Baixar HTML
                 </button>
-                <button 
-                  className="btn btn-secondary" 
+                <button
+                  className="btn btn-secondary"
                   style={{ padding: '8px', borderRadius: '8px', color: 'var(--danger)' }}
                   onClick={() => setSelectedDoc(null)}
                 >
