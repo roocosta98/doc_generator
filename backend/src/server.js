@@ -2,6 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
+import dns from 'dns';
+
+// Workaround for Node.js fetch DNS resolution issues (IPv6 vs IPv4) on hosting providers like Render
+if (typeof dns.setDefaultResultOrder === 'function') {
+  dns.setDefaultResultOrder('ipv4first');
+}
 import { generateDocument } from './controllers/documentController.js';
 import { sendDocumentToZapSign, getDocumentStatus } from './controllers/zapsignController.js';
 import { confirmPublicProposal, getPublicProposal, sendProposalConfirmation } from './controllers/proposalController.js';
