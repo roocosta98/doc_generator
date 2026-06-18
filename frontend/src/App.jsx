@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from './supabase';
 import Home from './pages/Home';
 import Templates from './pages/Templates';
 import Documents from './pages/Documents';
@@ -8,12 +8,9 @@ import UserList from './pages/UserList';
 import Auth from './pages/Auth';
 import TermsOfUse from './pages/TermsOfUse';
 import PrivacyPolicy from './pages/PrivacyPolicy';
-import { Sparkles, Home as HomeIcon, FileText, FileCheck, LogOut, User, Users } from 'lucide-react';
-
-const supabase = createClient(
-  'https://raxmdrunbidfmlvsldnj.supabase.co',
-  'sb_publishable_L-ktxwLir7iUTMCVF1Gaew_bI0kYbKT'
-);
+import Settings from './pages/Settings';
+import Clauses from './pages/Clauses';
+import { Sparkles, Home as HomeIcon, FileText, FileCheck, LogOut, User, Users, Settings as SettingsIcon, AlignLeft } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home'); // 'home', 'templates', 'documents', ou 'users'
@@ -254,6 +251,28 @@ export default function App() {
                 <span>Documentos</span>
               </div>
             </button>
+            <button 
+              className={`nav-btn ${activeTab === 'clauses' ? 'active' : ''}`}
+              onClick={() => {
+                setActiveTab('clauses');
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <AlignLeft size={16} />
+                <span>Cláusulas</span>
+              </div>
+            </button>
+            <button 
+              className={`nav-btn ${activeTab === 'settings' ? 'active' : ''}`}
+              onClick={() => {
+                setActiveTab('settings');
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <SettingsIcon size={16} />
+                <span>Configurações</span>
+              </div>
+            </button>
             {userRole === 'admin' && (
               <button 
                 className={`nav-btn ${activeTab === 'users' ? 'active' : ''}`}
@@ -326,6 +345,8 @@ export default function App() {
             setAutoOpenGenerateModal={setAutoOpenGenerateModal}
           />
         )}
+        {activeTab === 'settings' && <Settings user={user} />}
+        {activeTab === 'clauses' && <Clauses />}
         {activeTab === 'users' && <UserList />}
       </main>
 

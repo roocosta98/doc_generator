@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../supabase';
 import { Sparkles, FileText, FilePlus, History, Shield, Play, Layers } from 'lucide-react';
-
-const supabase = createClient(
-  'https://raxmdrunbidfmlvsldnj.supabase.co',
-  'sb_publishable_L-ktxwLir7iUTMCVF1Gaew_bI0kYbKT'
-);
 
 export default function Home({ user, userRole, setActiveTab, setPreSelectedTemplateId, setAutoOpenGenerateModal }) {
   const [stats, setStats] = useState({

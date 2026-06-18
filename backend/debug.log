@@ -1,0 +1,472 @@
+[2026-06-17T20:55:30.771Z] GENERATE REQUEST:
+  template_id: "f8c7231a-5232-402a-b749-9bf70a80bfd7"
+  document_title: "Proposta - ITAU UNIBANCO - teste"
+  form_data: {
+  "cliente_nome": "ITAU UNIBANCO",
+  "contato_nome": "Milton Maluhy Filho",
+  "razao_social": "ITAU UNIBANCO S.A.",
+  "nome_fantasia": "ITAU UNIBANCO",
+  "cnpj": "60.701.190/0001-04",
+  "email_cliente": "itaujudicial@itau-unibanco.com.br",
+  "whatsapp_cliente": "(11) 30034-828",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 74.567.452.000,00",
+  "honorario_mensal": "",
+  "servicos": "Contabilidade mensal",
+  "funcionarios": "",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "",
+  "validade_proposta": "1998-03-27",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": ""
+}
+
+[2026-06-17T20:58:50.999Z] GENERATE REQUEST:
+  template_id: "f8c7231a-5232-402a-b749-9bf70a80bfd7"
+  document_title: "Proposta - ITAU UNIBANCO - teste"
+  form_data: {
+  "cliente_nome": "ITAU UNIBANCO",
+  "contato_nome": "Milton Maluhy Filho",
+  "razao_social": "ITAU UNIBANCO S.A.",
+  "nome_fantasia": "ITAU UNIBANCO",
+  "cnpj": "60.701.190/0001-04",
+  "email_cliente": "itaujudicial@itau-unibanco.com.br",
+  "whatsapp_cliente": "(11) 30034-828",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 74.567.452.000,00",
+  "honorario_mensal": "",
+  "servicos": "Contabilidade mensal",
+  "funcionarios": "",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "",
+  "validade_proposta": "1998-03-27",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="ITAU UNIBANCO" (type=string)
+  Replace {contato_nome}: val="Milton Maluhy Filho" (type=string)
+  Replace {razao_social}: val="ITAU UNIBANCO S.A." (type=string)
+  Replace {cnpj}: val="60.701.190/0001-04" (type=string)
+  Replace {servicos}: val="Contabilidade mensal" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val="1998-03-27" (type=string)
+
+[2026-06-17T21:03:35.554Z] GENERATE REQUEST:
+  template_id: "f8c7231a-5232-402a-b749-9bf70a80bfd7"
+  document_title: "Proposta - ITAU UNIBANCO - teste"
+  form_data: {
+  "cliente_nome": "ITAU UNIBANCO",
+  "contato_nome": "Milton Maluhy Filho",
+  "razao_social": "ITAU UNIBANCO S.A.",
+  "nome_fantasia": "ITAU UNIBANCO",
+  "cnpj": "60.701.190/0001-04",
+  "email_cliente": "itaujudicial@itau-unibanco.com.br",
+  "whatsapp_cliente": "(11) 30034-828",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 74.567.452.000,00",
+  "honorario_mensal": "",
+  "servicos": "Contabilidade mensal",
+  "funcionarios": "",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "",
+  "validade_proposta": "1998-03-27",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="ITAU UNIBANCO" (type=string)
+  Replace {contato_nome}: val="Milton Maluhy Filho" (type=string)
+  Replace {razao_social}: val="ITAU UNIBANCO S.A." (type=string)
+  Replace {cnpj}: val="60.701.190/0001-04" (type=string)
+  Replace {servicos}: val="Contabilidade mensal" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val="1998-03-27" (type=string)
+
+[2026-06-17T21:03:57.636Z] GENERATE REQUEST:
+  template_id: "f8c7231a-5232-402a-b749-9bf70a80bfd7"
+  document_title: "Proposta - ITAU UNIBANCO - teste"
+  form_data: {
+  "cliente_nome": "ITAU UNIBANCO",
+  "contato_nome": "Milton Maluhy Filho",
+  "razao_social": "ITAU UNIBANCO S.A.",
+  "nome_fantasia": "ITAU UNIBANCO",
+  "cnpj": "60.701.190/0001-04",
+  "email_cliente": "itaujudicial@itau-unibanco.com.br",
+  "whatsapp_cliente": "(11) 30034-828",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 74.567.452.000,00",
+  "honorario_mensal": "",
+  "servicos": "Contabilidade mensal",
+  "funcionarios": "",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "",
+  "validade_proposta": "55555-05-05",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="ITAU UNIBANCO" (type=string)
+  Replace {contato_nome}: val="Milton Maluhy Filho" (type=string)
+  Replace {razao_social}: val="ITAU UNIBANCO S.A." (type=string)
+  Replace {cnpj}: val="60.701.190/0001-04" (type=string)
+  Replace {servicos}: val="Contabilidade mensal" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val="55555-05-05" (type=string)
+
+[2026-06-18T02:17:40.241Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Proposta - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+
+[2026-06-18T02:18:08.831Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Proposta - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+
+[2026-06-18T02:19:23.264Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Proposta - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+
+[2026-06-18T02:19:27.967Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Proposta - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+
+[2026-06-18T02:21:26.156Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Proposta - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+
+[2026-06-18T02:21:30.119Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Proposta - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+
+[2026-06-18T02:24:17.857Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Proposta - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+
+[2026-06-18T02:25:16.299Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Contrato - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+
+[2026-06-18T02:30:21.949Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Proposta - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+
+[2026-06-18T02:32:59.363Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Proposta - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+
+[2026-06-18T02:33:31.343Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Contrato - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+

@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-    host: true // permite acesso em rede local se necessário
+    host: true, // permite acesso em rede local se necessário
+    maxHeaderSize: 32768 // aumenta limite para cabeçalhos/cookies grandes
   }
 });

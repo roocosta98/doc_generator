@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../supabase';
 import { 
   FileDown, Printer, FileText, Send, Loader2, Sparkles, 
   CheckCircle2, AlertCircle, Plus, Trash2, Link2, X 
 } from 'lucide-react';
-
-const supabase = createClient(
-  'https://raxmdrunbidfmlvsldnj.supabase.co',
-  'sb_publishable_L-ktxwLir7iUTMCVF1Gaew_bI0kYbKT'
-);
+import html2pdf from 'html2pdf.js';
 
 const LAYOUT_TYPES = ['title', 'subtitle', 'divider'];
 
@@ -32,6 +28,88 @@ export default function GenerateDocument({ preSelectedTemplateId, onClose, onSuc
   const [fields, setFields] = useState([]);
   const [formData, setFormData] = useState({});
   const [documentTitle, setDocumentTitle] = useState('');
+
+  // Estados para Assinatura ZapSign imediata
+  const [generatedDocId, setGeneratedDocId] = useState(null);
+  const [showZapSignModal, setShowZapSignModal] = useState(false);
+  const [zapsignSigners, setZapsignSigners] = useState([{ name: '', email: '' }]);
+  const [isSendingZapSign, setIsSendingZapSign] = useState(false);
+  const [zapsignError, setZapsignError] = useState('');
+
+  const handleAddZapSigner = () => setZapsignSigners([...zapsignSigners, { name: '', email: '' }]);
+  const handleRemoveZapSigner = (idx) => setZapsignSigners(zapsignSigners.filter((_, i) => i !== idx));
+  const handleZapSignerChange = (idx, field, val) => {
+    const next = [...zapsignSigners];
+    next[idx][field] = val;
+    setZapsignSigners(next);
+  };
+
+  const handleZapSignSubmit = async (e) => {
+    e.preventDefault();
+    setZapsignError('');
+    const valid = zapsignSigners.filter(s => s.name.trim() && s.email.trim());
+    if (valid.length === 0) {
+      setZapsignError('Preencha pelo menos um signatário com Nome e E-mail.');
+      return;
+    }
+    setIsSendingZapSign(true);
+    try {
+      // 1. Converter HTML para PDF usando html2pdf.js
+      const element = document.createElement('div');
+      element.innerHTML = generatedHtml;
+      element.style.width = '210mm';
+      element.style.padding = '0';
+      element.style.background = '#ffffff';
+      element.style.color = '#000000';
+      document.body.appendChild(element);
+
+      const opt = {
+        margin: 0,
+        filename: `${documentTitle.toLowerCase().replace(/\s+/g, '-')}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      const pdfDataUri = await html2pdf().set(opt).from(element).outputPdf('datauristring');
+      document.body.removeChild(element);
+
+      const base64Pdf = pdfDataUri.split(',')[1];
+
+      // 2. Chamar o backend
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token;
+      
+      const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '::1'
+        ? 'http://127.0.0.1:5000' : 'https://doc-generator-lrv6.onrender.com';
+
+      const response = await fetch(`${baseUrl}/api/zapsign/send`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {})
+        },
+        body: JSON.stringify({
+          document_id: generatedDocId,
+          document_title: documentTitle,
+          base64_pdf: base64Pdf,
+          signers: valid
+        })
+      });
+
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Erro ao processar assinatura.');
+
+      alert('Documento enviado para assinatura com sucesso! Você pode acompanhar o progresso na aba "Documentos".');
+      setShowZapSignModal(false);
+      if (onSuccess) onSuccess();
+    } catch (err) {
+      console.error('❌ Erro ZapSign:', err);
+      setZapsignError(err.message || 'Erro ao gerar ou enviar documento.');
+    } finally {
+      setIsSendingZapSign(false);
+    }
+  };
 
   const [isLoadingTemplates, setIsLoadingTemplates] = useState(false);
   const [isLoadingFields, setIsLoadingFields] = useState(false);
@@ -149,6 +227,27 @@ export default function GenerateDocument({ preSelectedTemplateId, onClose, onSuc
   const handleGenerate = async (e) => {
     e.preventDefault();
     if (!selectedTemplateId) return;
+
+    // Validação de limites numéricos (Min/Max)
+    for (const field of fields) {
+      const cfg = parsePlaceholder(field.placeholder);
+      const realType = cfg.real_type || field.type;
+      if (realType === 'number') {
+        const val = formData[field.key];
+        if (val !== undefined && val !== '') {
+          const numVal = Number(val);
+          if (cfg.min !== undefined && numVal < cfg.min) {
+            setStatusMessage({ type: 'error', text: `O campo "${field.label}" deve ser no mínimo ${cfg.min}.` });
+            return;
+          }
+          if (cfg.max !== undefined && numVal > cfg.max) {
+            setStatusMessage({ type: 'error', text: `O campo "${field.label}" deve ser no máximo ${cfg.max}.` });
+            return;
+          }
+        }
+      }
+    }
+
     setIsGenerating(true);
     setGeneratedHtml('');
     setStatusMessage({ type: '', text: '' });
@@ -156,8 +255,8 @@ export default function GenerateDocument({ preSelectedTemplateId, onClose, onSuc
     try {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
-      const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://localhost:5000' : 'https://doc-generator-lrv6.onrender.com';
+      const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '::1'
+        ? 'http://127.0.0.1:5000' : 'https://doc-generator-lrv6.onrender.com';
 
       const response = await fetch(`${baseUrl}/api/documents/generate`, {
         method: 'POST',
@@ -172,6 +271,7 @@ export default function GenerateDocument({ preSelectedTemplateId, onClose, onSuc
       if (!response.ok) throw new Error(result.error || 'Falha ao processar no backend.');
 
       setGeneratedHtml(result.html);
+      setGeneratedDocId(result.document_id); // Salvar ID para assinatura imediata
       setStatusMessage({ type: 'success', text: 'Documento gerado com sucesso!' });
       if (onSuccess) onSuccess();
     } catch (err) {
@@ -298,9 +398,25 @@ export default function GenerateDocument({ preSelectedTemplateId, onClose, onSuc
 
         {/* NUMBER */}
         {realType === 'number' && (
-          <input type="number" className="input-field" placeholder={placeholder}
-            required={field.required} value={formData[field.key] || ''}
-            onChange={(e) => handleInputChange(field.key, e.target.value)} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <input type="number" className="input-field" placeholder={placeholder}
+              min={cfg.min} max={cfg.max}
+              required={field.required} value={formData[field.key] || ''}
+              onChange={(e) => handleInputChange(field.key, e.target.value)} />
+            {(cfg.min !== undefined || cfg.max !== undefined) && (
+              <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+                Intervalo permitido: {cfg.min !== undefined ? `mínimo ${cfg.min}` : ''} {cfg.min !== undefined && cfg.max !== undefined ? 'até' : ''} {cfg.max !== undefined ? `máximo ${cfg.max}` : ''}
+              </span>
+            )}
+            {formData[field.key] !== undefined && formData[field.key] !== '' && (
+              (cfg.min !== undefined && Number(formData[field.key]) < cfg.min) ||
+              (cfg.max !== undefined && Number(formData[field.key]) > cfg.max)
+            ) && (
+              <span style={{ fontSize: '11px', color: '#f87171', display: 'flex', alignItems: 'center', gap: '4px', fontWeight: 'bold' }}>
+                ⚠️ O valor deve estar entre {cfg.min} e {cfg.max}.
+              </span>
+            )}
+          </div>
         )}
 
         {/* DATE */}
@@ -523,6 +639,22 @@ export default function GenerateDocument({ preSelectedTemplateId, onClose, onSuc
                 <p style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>O documento abaixo é um reflexo exato do PDF oficial.</p>
               </div>
               <div style={{ display: 'flex', gap: '10px' }}>
+                {generatedDocId && (
+                  <button 
+                    className="btn btn-primary" 
+                    style={{ 
+                      background: 'linear-gradient(135deg, var(--secondary), var(--primary))', 
+                      boxShadow: '0 4px 12px rgba(168, 85, 247, 0.2)',
+                      padding: '8px 14px',
+                      borderRadius: '8px',
+                      fontSize: '13px'
+                    }}
+                    onClick={() => setShowZapSignModal(true)} 
+                    title="Enviar para Assinatura via ZapSign"
+                  >
+                    <Send size={14} /> Assinar via ZapSign
+                  </button>
+                )}
                 <button className="btn btn-secondary" onClick={handlePrint} title="Imprimir / Salvar como PDF">
                   <Printer size={16} /> Imprimir / PDF
                 </button>
@@ -534,6 +666,126 @@ export default function GenerateDocument({ preSelectedTemplateId, onClose, onSuc
             <iframe id="doc-preview-iframe" className="preview-iframe" srcDoc={generatedHtml}
               sandbox="allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
               title="Pré-visualização do Documento" />
+          </div>
+        )}
+
+        {showZapSignModal && (
+          <div className="modal-backdrop" onClick={(e) => e.target.className === 'modal-backdrop' && setShowZapSignModal(false)}>
+            <div className="modal-content" style={{ maxWidth: '600px', width: '90vw', padding: '0', backgroundColor: '#121826', zIndex: 1100 }}>
+              <button className="modal-close-btn" onClick={() => setShowZapSignModal(false)} title="Fechar">
+                <X size={18} />
+              </button>
+
+              <div style={{ borderBottom: '1px solid var(--bg-card-border)', padding: '24px 32px 16px 32px' }}>
+                <h2 style={{ fontSize: '20px', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '800' }}>
+                  <Send size={20} color="var(--primary)" /> Assinatura Digital (ZapSign)
+                </h2>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '13px', marginTop: '4px' }}>
+                  Configure os signatários para assinatura eletrônica do documento recém-gerado.
+                </p>
+              </div>
+
+              <form onSubmit={handleZapSignSubmit} style={{ padding: '24px 32px 32px 32px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                {zapsignError && (
+                  <div style={{
+                    padding: '12px 16px', borderRadius: 'var(--radius-sm)',
+                    backgroundColor: 'rgba(239,68,68,0.12)', border: '1px solid var(--danger)',
+                    color: '#f87171', display: 'flex', gap: '8px', alignItems: 'center', fontSize: '13px'
+                  }}>
+                    <AlertCircle size={16} />
+                    <span>{zapsignError}</span>
+                  </div>
+                )}
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxHeight: '280px', overflowY: 'auto', paddingRight: '4px' }}>
+                  <label className="input-label" style={{ marginBottom: '-8px' }}>Signatários do Documento</label>
+                  {zapsignSigners.map((signer, index) => (
+                    <div key={index} style={{ 
+                      display: 'grid', 
+                      gridTemplateColumns: zapsignSigners.length > 1 ? '1fr 1fr 40px' : '1fr 1fr', 
+                      gap: '12px', 
+                      alignItems: 'end',
+                      backgroundColor: 'rgba(255,255,255,0.01)',
+                      padding: '12px',
+                      borderRadius: '8px',
+                      border: '1px solid var(--bg-card-border)'
+                    }}>
+                      <div className="input-group" style={{ marginBottom: 0 }}>
+                        <label className="input-label" style={{ fontSize: '10px' }}>Nome Completo *</label>
+                        <input 
+                          type="text" 
+                          className="input-field" 
+                          placeholder="Ex: João da Silva"
+                          required
+                          value={signer.name}
+                          onChange={(e) => handleZapSignerChange(index, 'name', e.target.value)}
+                        />
+                      </div>
+                      <div className="input-group" style={{ marginBottom: 0 }}>
+                        <label className="input-label" style={{ fontSize: '10px' }}>E-mail *</label>
+                        <input 
+                          type="email" 
+                          className="input-field" 
+                          placeholder="Ex: joao@email.com"
+                          required
+                          value={signer.email}
+                          onChange={(e) => handleZapSignerChange(index, 'email', e.target.value)}
+                        />
+                      </div>
+                      {zapsignSigners.length > 1 && (
+                        <button 
+                          type="button" 
+                          className="btn btn-danger" 
+                          style={{ padding: '0', height: '42px', width: '40px', borderRadius: '8px' }}
+                          onClick={() => handleRemoveZapSigner(index)}
+                          title="Remover signatário"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <button 
+                  type="button" 
+                  className="btn btn-secondary" 
+                  style={{ width: '100%', height: '40px', fontSize: '13px', borderStyle: 'dashed' }}
+                  onClick={handleAddZapSigner}
+                >
+                  + Adicionar Signatário
+                </button>
+
+                <div style={{ display: 'flex', gap: '12px', marginTop: '10px' }}>
+                  <button 
+                    type="button" 
+                    className="btn btn-secondary" 
+                    style={{ flex: 1, height: '48px' }} 
+                    onClick={() => setShowZapSignModal(false)}
+                    disabled={isSendingZapSign}
+                  >
+                    Cancelar
+                  </button>
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary" 
+                    style={{ flex: 2, height: '48px' }}
+                    disabled={isSendingZapSign}
+                  >
+                    {isSendingZapSign ? (
+                      <>
+                        <Loader2 style={{ animation: 'spin 1s linear infinite' }} size={18} />
+                        Enviando p/ ZapSign...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={16} /> Enviar para Assinatura
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         )}
       </div>

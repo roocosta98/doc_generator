@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../supabase';
 import { Sparkles, Mail, Lock, UserPlus, LogIn, AlertCircle, CheckCircle2, Loader2 } from 'lucide-react';
 import TermsOfUse from './TermsOfUse';
 import PrivacyPolicy from './PrivacyPolicy';
-
-const supabase = createClient(
-  'https://raxmdrunbidfmlvsldnj.supabase.co',
-  'sb_publishable_L-ktxwLir7iUTMCVF1Gaew_bI0kYbKT'
-);
 
 export default function Auth({ onAuthSuccess }) {
   const [isLogin, setIsLogin] = useState(true); // alternar entre login e cadastro

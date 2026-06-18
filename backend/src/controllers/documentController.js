@@ -1,5 +1,33 @@
 import { createClient } from '@supabase/supabase-js';
 import xss from 'xss';
+import fs from 'fs';
+
+const createUserSupabaseClient = (token) => createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY,
+  {
+    global: {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    },
+    auth: {
+      persistSession: false
+    }
+  }
+);
+
+const createServiceSupabaseClient = () => {
+  if (!process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY === 'cole_a_service_role_key_aqui') return null;
+  return createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY,
+    {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false
+      }
+    }
+  );
+};
 
 // Função para aplicar a casca do papel timbrado baseado no tema escolhido
 function applyLetterhead(content, visualIdentity, title) {
@@ -8,19 +36,41 @@ function applyLetterhead(content, visualIdentity, title) {
   const logoUrl = visualIdentity.logoUrl || '';
   const headerText = visualIdentity.headerText || '';
   const footerText = visualIdentity.footerText || '';
+  const fontFamily = visualIdentity.fontFamily || 'Inter';
+  const backgroundImageUrl = visualIdentity.backgroundImageUrl || '';
   
   // Margens (padrão A4)
   const margins = visualIdentity.margins || { top: '2.5cm', bottom: '2.5cm', left: '3.0cm', right: '2.0cm' };
 
+  // Fontes do Google Fonts mapping
+  const fontMapping = {
+    'Inter': "'Inter', -apple-system, sans-serif",
+    'Playfair Display': "'Playfair Display', Georgia, serif",
+    'Montserrat': "'Montserrat', sans-serif",
+    'Lora': "'Lora', Georgia, serif",
+    'Roboto': "'Roboto', sans-serif",
+    'Merriweather': "'Merriweather', serif",
+    'Arial': "Arial, sans-serif",
+    'Times New Roman': "'Times New Roman', Times, serif"
+  };
+  const selectedFont = fontMapping[fontFamily] || "'Inter', sans-serif";
+
+  // Papel timbrado completo de fundo (background image)
+  const backgroundStyle = backgroundImageUrl 
+    ? `background-image: url('${xss(backgroundImageUrl)}'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat;`
+    : 'background-color: #ffffff;';
+
   let themeStyles = '';
   let headerHtml = '';
   let footerHtml = '';
+  let extraWrapperStart = '';
+  let extraWrapperEnd = '';
 
-  // 1. Estilizações específicas baseadas no tema
+  // 1. Estilizações específicas baseadas no tema e fontes
   if (theme === 'classic') {
     themeStyles = `
       body {
-        font-family: 'Playfair Display', Georgia, serif;
+        font-family: ${selectedFont};
         color: #1e293b;
         background-color: #f8fafc;
         margin: 0;
@@ -29,7 +79,7 @@ function applyLetterhead(content, visualIdentity, title) {
         justify-content: center;
       }
       .page {
-        background: #ffffff;
+        ${backgroundStyle}
         width: 210mm;
         min-height: 297mm;
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -39,7 +89,7 @@ function applyLetterhead(content, visualIdentity, title) {
         border-top: 8px solid ${primaryColor};
       }
       .header-container {
-        border-bottom: 2px double #e2e8f0;
+        border-bottom: 2px double ${primaryColor};
         padding-bottom: 15px;
         margin-bottom: 30px;
         text-align: center;
@@ -51,6 +101,7 @@ function applyLetterhead(content, visualIdentity, title) {
         color: ${primaryColor};
         margin: 0 0 5px 0;
         text-transform: uppercase;
+        font-family: ${selectedFont};
       }
       .header-subtitle {
         font-size: 12px;
@@ -62,10 +113,21 @@ function applyLetterhead(content, visualIdentity, title) {
         font-size: 14px;
         line-height: 1.8;
         text-align: justify;
+        color: #1e293b;
+      }
+      .document-body .contract-title {
+        color: ${primaryColor};
+        font-family: ${selectedFont};
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        padding-bottom: 6px;
+      }
+      .document-body .clause-title {
+        color: ${primaryColor};
+        font-family: ${selectedFont};
       }
       .footer-container {
         position: absolute;
-        bottom: ${margins.bottom};
+        bottom: 25px;
         left: ${margins.left};
         right: ${margins.right};
         border-top: 1px solid #e2e8f0;
@@ -85,14 +147,14 @@ function applyLetterhead(content, visualIdentity, title) {
     footerHtml = `
       <div class="footer-container">
         <div>${xss(footerText || 'Este documento é sigiloso e de uso restrito.')}</div>
-        <div style="margin-top: 4px;">Pág. 1 de 1</div>
+        <div style="margin-top: 4px; font-weight: bold; color: ${primaryColor};">Papel de Impressão Oficial</div>
       </div>
     `;
 
   } else if (theme === 'modern') {
     themeStyles = `
       body {
-        font-family: 'Inter', -apple-system, sans-serif;
+        font-family: ${selectedFont};
         color: #0f172a;
         background-color: #f1f5f9;
         margin: 0;
@@ -101,7 +163,7 @@ function applyLetterhead(content, visualIdentity, title) {
         justify-content: center;
       }
       .page {
-        background: #ffffff;
+        ${backgroundStyle}
         width: 210mm;
         min-height: 297mm;
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -114,7 +176,7 @@ function applyLetterhead(content, visualIdentity, title) {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid #f1f5f9;
+        border-bottom: 2px solid #f1f5f9;
         padding-bottom: 20px;
         margin-bottom: 40px;
       }
@@ -140,6 +202,7 @@ function applyLetterhead(content, visualIdentity, title) {
         font-weight: 800;
         color: #0f172a;
         margin: 0;
+        font-family: ${selectedFont};
       }
       .header-meta {
         text-align: right;
@@ -148,12 +211,23 @@ function applyLetterhead(content, visualIdentity, title) {
       }
       .document-body {
         font-size: 13px;
-        line-height: 1.6;
+        line-height: 1.7;
         color: #334155;
+      }
+      .document-body .contract-title {
+        color: #0f172a;
+        font-family: ${selectedFont};
+        border-bottom: 2px solid ${primaryColor};
+        display: inline-block;
+        padding-bottom: 4px;
+      }
+      .document-body .clause-title {
+        color: ${primaryColor};
+        font-family: ${selectedFont};
       }
       .footer-container {
         position: absolute;
-        bottom: 30px;
+        bottom: 25px;
         left: calc(${margins.left} + 10px);
         right: ${margins.right};
         display: flex;
@@ -183,14 +257,205 @@ function applyLetterhead(content, visualIdentity, title) {
     footerHtml = `
       <div class="footer-container">
         <span>${xss(footerText || 'Documento eletrônico gerado por DocGenerator.')}</span>
-        <span style="font-weight: 600;">Confidencial</span>
+        <span style="font-weight: 600; color: ${primaryColor};">Confidencial</span>
+      </div>
+    `;
+
+  } else if (theme === 'corporate') {
+    themeStyles = `
+      body {
+        font-family: ${selectedFont};
+        color: #1e293b;
+        background-color: #f1f5f9;
+        margin: 0;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+      }
+      .page {
+        ${backgroundStyle}
+        width: 210mm;
+        min-height: 297mm;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        padding: ${margins.top} ${margins.right} ${margins.bottom} ${margins.left};
+        box-sizing: border-box;
+        position: relative;
+      }
+      .corporate-band {
+        background-color: ${primaryColor};
+        color: #ffffff;
+        padding: 24px;
+        margin-top: calc(-${margins.top});
+        margin-left: calc(-${margins.left});
+        margin-right: calc(-${margins.right});
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .corporate-title {
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 0;
+        letter-spacing: 0.5px;
+      }
+      .corporate-sub {
+        font-size: 11px;
+        opacity: 0.8;
+      }
+      .document-body {
+        font-size: 13.5px;
+        line-height: 1.75;
+        color: #1e293b;
+      }
+      .document-body .contract-title {
+        color: ${primaryColor};
+        font-family: ${selectedFont};
+        margin-top: 10px;
+        text-align: left !important;
+      }
+      .document-body .clause-title {
+        color: ${primaryColor};
+        font-family: ${selectedFont};
+        border-left: 3px solid ${primaryColor};
+        padding-left: 8px;
+      }
+      .footer-container {
+        position: absolute;
+        bottom: 25px;
+        left: ${margins.left};
+        right: ${margins.right};
+        border-top: 2px solid ${primaryColor};
+        padding-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        color: #475569;
+      }
+    `;
+    headerHtml = `
+      <div class="corporate-band">
+        <div>
+          <h1 class="corporate-title">${xss(headerText || title)}</h1>
+          <div class="corporate-sub">Modelo Corporativo Padrão</div>
+        </div>
+        ${logoUrl ? `<img src="${xss(logoUrl)}" alt="Logo" style="max-height: 45px; filter: brightness(0) invert(1);" />` : ''}
+      </div>
+    `;
+    footerHtml = `
+      <div class="footer-container">
+        <span>${xss(footerText || 'Em caso de dúvidas, consulte o emissor.')}</span>
+        <span style="font-weight: bold;">DocGenerator Enterprise</span>
+      </div>
+    `;
+
+  } else if (theme === 'executive') {
+    themeStyles = `
+      body {
+        font-family: ${selectedFont};
+        color: #0f172a;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+      }
+      .page {
+        ${backgroundStyle}
+        width: 210mm;
+        min-height: 297mm;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        padding: calc(${margins.top} + 10px) calc(${margins.right} + 10px) calc(${margins.bottom} + 10px) calc(${margins.left} + 10px);
+        box-sizing: border-box;
+        position: relative;
+      }
+      .exec-border-outer {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        border: 1px solid ${primaryColor};
+        pointer-events: none;
+      }
+      .exec-border-inner {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        right: 24px;
+        bottom: 24px;
+        border: 2px double ${primaryColor};
+        pointer-events: none;
+      }
+      .header-container {
+        text-align: center;
+        margin-bottom: 35px;
+        margin-top: 15px;
+      }
+      .header-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: ${primaryColor};
+        margin: 0 0 8px 0;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+      .header-line {
+        width: 80px;
+        height: 2px;
+        background-color: ${primaryColor};
+        margin: 12px auto;
+      }
+      .document-body {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #0f172a;
+      }
+      .document-body .contract-title {
+        color: ${primaryColor};
+        font-family: ${selectedFont};
+        letter-spacing: 0.5px;
+      }
+      .document-body .clause-title {
+        color: ${primaryColor};
+        font-family: ${selectedFont};
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .footer-container {
+        position: absolute;
+        bottom: 40px;
+        left: calc(${margins.left} + 20px);
+        right: calc(${margins.right} + 20px);
+        text-align: center;
+        font-size: 10px;
+        color: #64748b;
+        letter-spacing: 0.5px;
+      }
+    `;
+    extraWrapperStart = `
+      <div class="exec-border-outer"></div>
+      <div class="exec-border-inner"></div>
+    `;
+    headerHtml = `
+      <div class="header-container">
+        ${logoUrl ? `<img src="${xss(logoUrl)}" alt="Logo" style="max-height: 45px; margin-bottom: 12px;" />` : ''}
+        <h1 class="header-title">${xss(headerText || title)}</h1>
+        <div class="header-line"></div>
+      </div>
+    `;
+    footerHtml = `
+      <div class="footer-container">
+        <div>${xss(footerText || 'Executado e assinado via plataforma digital DocGenerator.')}</div>
       </div>
     `;
 
   } else { // Minimalist
     themeStyles = `
       body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-family: ${selectedFont};
         color: #27272a;
         background-color: #fafafa;
         margin: 0;
@@ -199,7 +464,7 @@ function applyLetterhead(content, visualIdentity, title) {
         justify-content: center;
       }
       .page {
-        background: #ffffff;
+        ${backgroundStyle}
         width: 210mm;
         min-height: 297mm;
         padding: calc(${margins.top} + 20px) ${margins.right} calc(${margins.bottom} + 20px) ${margins.left};
@@ -218,21 +483,30 @@ function applyLetterhead(content, visualIdentity, title) {
         color: #18181b;
         margin: 0;
         letter-spacing: -0.5px;
+        font-family: ${selectedFont};
       }
       .header-divider {
         width: 40px;
         height: 2px;
-        background-color: #e4e4e7;
+        background-color: ${primaryColor};
         margin-top: 15px;
       }
       .document-body {
-        font-size: 13px;
-        line-height: 1.7;
+        font-size: 13.5px;
+        line-height: 1.75;
         color: #3f3f46;
+      }
+      .document-body .contract-title {
+        color: #18181b;
+        font-family: ${selectedFont};
+      }
+      .document-body .clause-title {
+        color: #18181b;
+        font-family: ${selectedFont};
       }
       .footer-container {
         position: absolute;
-        bottom: 40px;
+        bottom: 30px;
         left: ${margins.left};
         right: ${margins.right};
         text-align: left;
@@ -249,7 +523,7 @@ function applyLetterhead(content, visualIdentity, title) {
     `;
     footerHtml = `
       <div class="footer-container">
-        <div>${xss(footerText || 'Gerado dinamicamente.')}</div>
+        <div>${xss(footerText || 'Documento simples gerado digitalmente.')}</div>
       </div>
     `;
   }
@@ -264,7 +538,7 @@ function applyLetterhead(content, visualIdentity, title) {
       <title>${xss(title)}</title>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
       <style>
         ${themeStyles}
         /* Garantias de impressão com alta fidelidade */
@@ -284,6 +558,7 @@ function applyLetterhead(content, visualIdentity, title) {
             print-color-adjust: exact !important;
           }
           .page {
+            ${backgroundStyle}
             box-shadow: none !important;
             width: 210mm !important;
             min-height: 297mm !important;
@@ -291,7 +566,6 @@ function applyLetterhead(content, visualIdentity, title) {
             margin: 0 !important;
             box-sizing: border-box !important;
             position: relative !important;
-            background-color: #ffffff !important;
             border-collapse: collapse !important;
             /* Mantém as bordas e cores originais de cada tema */
             -webkit-print-color-adjust: exact !important;
@@ -307,11 +581,13 @@ function applyLetterhead(content, visualIdentity, title) {
     </head>
     <body>
       <div class="page">
+        ${extraWrapperStart}
         ${headerHtml}
         <div class="document-body">
           ${content}
         </div>
         ${footerHtml}
+        ${extraWrapperEnd}
       </div>
     </body>
     </html>
@@ -321,7 +597,17 @@ function applyLetterhead(content, visualIdentity, title) {
 // Controller Principal
 export const generateDocument = async (req, res, next) => {
   try {
-    const { template_id, form_data, document_title } = req.body;
+    const { template_id, form_data, document_title, lead_id, document_kind } = req.body;
+
+    try {
+      const logMsg = `[${new Date().toISOString()}] GENERATE REQUEST:\n` +
+                     `  template_id: "${template_id}"\n` +
+                     `  document_title: "${document_title}"\n` +
+                     `  form_data: ${JSON.stringify(form_data, null, 2)}\n\n`;
+      fs.appendFileSync('debug.log', logMsg);
+    } catch (err) {
+      console.error('Error writing to debug.log:', err);
+    }
 
     if (!template_id) {
       return res.status(400).json({ error: 'O parâmetro template_id é obrigatório.' });
@@ -331,21 +617,17 @@ export const generateDocument = async (req, res, next) => {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(' ')[1];
     
-    const supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_ANON_KEY,
-      {
-        global: {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        },
-        auth: {
-          persistSession: false
-        }
-      }
-    );
+    const supabase = createUserSupabaseClient(token);
+    const readSupabase = createServiceSupabaseClient() || supabase;
+
+    let currentUser = null;
+    if (token) {
+      const { data: userData, error: userError } = await supabase.auth.getUser();
+      if (!userError) currentUser = userData?.user || null;
+    }
 
     // 2. Buscar o template no banco
-    const { data: template, error: templateError } = await supabase
+    const { data: template, error: templateError } = await readSupabase
       .from('templates')
       .select('*')
       .eq('id', template_id)
@@ -360,7 +642,7 @@ export const generateDocument = async (req, res, next) => {
     }
 
     // 2b. Buscar os campos do template para ler configurações extras (como o formato do repetidor de cláusulas)
-    const { data: fields, error: fieldsError } = await supabase
+    const { data: fields, error: fieldsError } = await readSupabase
       .from('template_fields')
       .select('*')
       .eq('template_id', template_id)
@@ -418,7 +700,10 @@ export const generateDocument = async (req, res, next) => {
     }
     
     // B. Substitui cada ocorrência do tipo {nome_campo} pelo valor correspondente em form_data
+    let replacementsLog = '';
     compiledContent = compiledContent.replace(/\{([a-zA-Z0-9_]+)\}/g, (match, key) => {
+      const val = form_data ? form_data[key] : undefined;
+      replacementsLog += `  Replace {${key}}: val=${val !== undefined ? `"${val}"` : 'undefined'} (type=${typeof val})\n`;
       if (form_data && form_data[key] !== undefined && form_data[key] !== null) {
         const val = form_data[key];
 
@@ -453,6 +738,10 @@ export const generateDocument = async (req, res, next) => {
       return `<span style="color: #ef4444; font-weight: bold;">[${key} não preenchido]</span>`;
     });
 
+    try {
+      fs.appendFileSync('debug.log', `Replacements log:\n${replacementsLog}\n`);
+    } catch (err) {}
+
     // 4. Aplicar a envoltura do Papel Timbrado baseada na Identidade Visual
     const finalHTML = applyLetterhead(
       compiledContent, 
@@ -468,8 +757,17 @@ export const generateDocument = async (req, res, next) => {
         .from('documents')
         .insert({
           template_id: template.id,
-          user_id: template.user_id, // Atribui ao dono do template
+          user_id: currentUser?.id || template.user_id,
+          lead_id: lead_id || null,
+          uploaded_by: currentUser?.id || template.user_id,
           title: document_title || `Cópia Gerada - ${template.title}`,
+          file_name: `${(document_title || template.title).replace(/[^\w.-]+/g, '_')}.html`,
+          file_path: `generated/${template.id}/${Date.now()}.html`,
+          bucket_name: 'crm_documents',
+          mime_type: 'text/html',
+          file_size: Buffer.byteLength(finalHTML, 'utf8'),
+          document_type: document_kind || 'documento_gerado',
+          document_kind: document_kind || 'outro',
           form_data: form_data || {},
           rendered_content: finalHTML
         })

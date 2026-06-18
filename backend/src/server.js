@@ -3,6 +3,9 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import { generateDocument } from './controllers/documentController.js';
+import { sendDocumentToZapSign, getDocumentStatus } from './controllers/zapsignController.js';
+import { confirmPublicProposal, getPublicProposal, sendProposalConfirmation } from './controllers/proposalController.js';
+import { importCompanyDocuments } from './controllers/companyDocumentController.js';
 
 // Carregar variáveis de ambiente
 dotenv.config();
@@ -21,7 +24,8 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Rota de Health Check
 app.get('/health', (req, res) => {
@@ -34,6 +38,14 @@ app.get('/health', (req, res) => {
 
 // Rota Principal de Geração Dinâmica de Documento
 app.post('/api/documents/generate', generateDocument);
+app.post('/api/company-documents/import', importCompanyDocuments);
+app.post('/api/proposals/send-confirmation', sendProposalConfirmation);
+app.get('/api/proposals/public/:token', getPublicProposal);
+app.post('/api/proposals/public/:token/confirm', confirmPublicProposal);
+
+// Rotas da Integração com ZapSign
+app.post('/api/zapsign/send', sendDocumentToZapSign);
+app.get('/api/zapsign/status/:document_id', getDocumentStatus);
 
 // Middleware Global de Tratamento de Erros
 app.use((err, req, res, next) => {
@@ -45,7 +57,7 @@ app.use((err, req, res, next) => {
 });
 
 // Inicialização do Servidor
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Servidor de Geração de Documentos rodando na porta ${PORT}`);
   console.log(`📡 URL Base: http://localhost:${PORT}`);
 });

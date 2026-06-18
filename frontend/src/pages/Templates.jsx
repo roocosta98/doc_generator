@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
-import { Plus, Search, Trash2, FileCheck, X, FileText, AlertCircle, Pencil } from 'lucide-react';
+import { supabase } from '../supabase';
+import { Plus, Search, Trash2, FileCheck, X, FileText, AlertCircle, Pencil, FileDown } from 'lucide-react';
 import CreateTemplate from './CreateTemplate';
 import EditTemplate from './EditTemplate';
-
-const supabase = createClient(
-  'https://raxmdrunbidfmlvsldnj.supabase.co',
-  'sb_publishable_L-ktxwLir7iUTMCVF1Gaew_bI0kYbKT'
-);
 
 export default function Templates({ onEmitTemplate }) {
   const [templates, setTemplates] = useState([]);
@@ -38,6 +33,45 @@ export default function Templates({ onEmitTemplate }) {
       setErrorMessage('Não foi possível carregar seus modelos.');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleDownloadCSV = async (templateId, templateTitle) => {
+    try {
+      const { data: fields, error } = await supabase
+        .from('template_fields')
+        .select('key, label, type')
+        .eq('template_id', templateId)
+        .order('display_order', { ascending: true });
+
+      if (error) throw error;
+
+      // Filter out purely visual layout fields
+      const inputFields = (fields || []).filter(f => !['title', 'subtitle', 'divider'].includes(f.type));
+
+      // CSV columns: first is document_title, then each key
+      const headers = ['titulo_do_documento', ...inputFields.map(f => f.key)];
+      const labels = ['Título do Contrato (Ex: Contrato de Locacao - Joao)', ...inputFields.map(f => `${f.label} (${f.type})`)];
+
+      // Build CSV content with BOM for Excel UTF-8 compliance
+      const csvContent = '\uFEFF' + [
+        headers.join(';'),
+        labels.join(';')
+      ].join('\r\n');
+
+      // Trigger download
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      const cleanTitle = templateTitle.toLowerCase().replace(/[^a-z0-9]/g, '_');
+      link.download = `modelo_lote_${cleanTitle}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error('Erro ao baixar modelo CSV:', err);
+      alert('Erro ao buscar campos do modelo para download: ' + err.message);
     }
   };
 
@@ -178,6 +212,22 @@ export default function Templates({ onEmitTemplate }) {
                   onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'rgba(99,102,241,0.08)'; }}
                 >
                   <Pencil size={15} /> Editar
+                </button>
+
+                {/* Baixar Planilha Modelo */}
+                <button
+                  className="btn btn-secondary btn-icon"
+                  style={{
+                    width: '40px', height: '40px', borderRadius: 'var(--radius-sm)', flexShrink: 0,
+                    border: '1px solid rgba(16,185,129,0.3)', color: '#34d399',
+                    backgroundColor: 'rgba(16,185,129,0.08)'
+                  }}
+                  onClick={() => handleDownloadCSV(template.id, template.title)}
+                  title="Baixar planilha modelo para preenchimento em lote"
+                  onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'rgba(16,185,129,0.18)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'rgba(16,185,129,0.08)'; }}
+                >
+                  <FileDown size={15} />
                 </button>
 
                 {/* Excluir */}

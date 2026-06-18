@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../supabase';
 import { 
   User, 
   Users, 
@@ -16,11 +16,6 @@ import {
   Lock, 
   Mail 
 } from 'lucide-react';
-
-const supabase = createClient(
-  'https://raxmdrunbidfmlvsldnj.supabase.co',
-  'sb_publishable_L-ktxwLir7iUTMCVF1Gaew_bI0kYbKT'
-);
 
 export default function UserList() {
   const [users, setUsers] = useState([]);

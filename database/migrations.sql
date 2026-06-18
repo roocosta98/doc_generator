@@ -173,7 +173,7 @@ BEGIN
         created_at,
         updated_at
     ) VALUES (
-        new_user_id::text,
+        new_user_id,
         new_user_id,
         jsonb_build_object('sub', new_user_id::text, 'email', user_email, 'email_verified', true, 'phone_verified', false),
         'email',
@@ -230,7 +230,7 @@ INSERT INTO auth.identities (
     updated_at
 )
 SELECT 
-    u.id::text,
+    u.id,
     u.id,
     jsonb_build_object('sub', u.id::text, 'email', u.email, 'email_verified', true, 'phone_verified', false),
     'email',
@@ -242,19 +242,4 @@ FROM auth.users u
 LEFT JOIN auth.identities i ON u.id = i.user_id
 WHERE i.user_id IS NULL;
 
--- Corrige a confirmação de contas legadas se necessário
-UPDATE auth.users
-SET confirmed_at = COALESCE(confirmed_at, email_confirmed_at, created_at)
-WHERE confirmed_at IS NULL;
-
--- Corrige as colunas de texto que não podem ser NULL para evitar erro 500 de Scan do GoTrue
-UPDATE auth.users
-SET 
-  confirmation_token = COALESCE(confirmation_token, ''),
-  email_change = COALESCE(email_change, ''),
-  email_change_token_new = COALESCE(email_change_token_new, ''),
-  recovery_token = COALESCE(recovery_token, '')
-WHERE confirmation_token IS NULL 
-   OR email_change IS NULL 
-   OR email_change_token_new IS NULL 
-   OR recovery_token IS NULL;
+-- Os reparos retroativos de usuários legados foram removidos para compatibilidade com o Supabase moderno.
