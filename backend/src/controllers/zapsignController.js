@@ -2,10 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 
 // Auxiliar para obter a URL base da API do ZapSign conforme o ambiente
 function getZapSignBaseUrl() {
-  const env = (process.env.ZAPSIGN_ENV || 'sandbox').toLowerCase();
-  return env === 'production' 
-    ? 'https://api.zapsign.com.br/api/v1' 
-    : 'https://sandbox.api.zapsign.com.br/api/v1';
+  return 'https://api.zapsign.com.br/api/v1';
 }
 
 async function moveLeadToStage(supabase, leadId, stageSlug) {
@@ -65,9 +62,7 @@ export const sendDocumentToZapSign = async (req, res, next) => {
     const zapsignToken = profile.zapsign_api_token;
     const zapsignEnv = profile.zapsign_env || 'sandbox';
 
-    const baseUrl = zapsignEnv.toLowerCase() === 'production' 
-      ? 'https://api.zapsign.com.br/api/v1' 
-      : 'https://sandbox.api.zapsign.com.br/api/v1';
+    const baseUrl = 'https://api.zapsign.com.br/api/v1';
 
     // Montar payload para a API do ZapSign
     // Nota: Removendo o prefixo "data:application/pdf;base64," se presente
@@ -85,16 +80,16 @@ export const sendDocumentToZapSign = async (req, res, next) => {
         phone_country: s.phone ? '55' : undefined,
         phone_number: s.phone || undefined,
         send_email: true
-      }))
+      })),
+      sandbox: zapsignEnv.toLowerCase() !== 'production'
     };
 
     console.log(`📤 Enviando documento "${document_title}" para ZapSign (${process.env.ZAPSIGN_ENV || 'sandbox'})...`);
 
-    const response = await fetch(`${baseUrl}/docs/`, {
+    const response = await fetch(`${baseUrl}/docs/?api_token=${zapsignToken}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${zapsignToken}`
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(zapSignPayload)
     });
@@ -202,9 +197,7 @@ export const getDocumentStatus = async (req, res, next) => {
     const zapsignToken = profile.zapsign_api_token;
     const zapsignEnv = profile.zapsign_env || 'sandbox';
 
-    const baseUrl = zapsignEnv.toLowerCase() === 'production' 
-      ? 'https://api.zapsign.com.br/api/v1' 
-      : 'https://sandbox.api.zapsign.com.br/api/v1';
+    const baseUrl = 'https://api.zapsign.com.br/api/v1';
 
     // 1. Obter o documento no banco para ler o doc_token
     const { data: document, error: dbError } = await supabase
@@ -226,9 +219,9 @@ export const getDocumentStatus = async (req, res, next) => {
 
     // 2. Chamar a ZapSign para buscar os dados de status atualizados
     console.log(`🔄 Buscando detalhes do documento ${docToken} na ZapSign...`);
-    const detailsResponse = await fetch(`${baseUrl}/docs/${docToken}/`, {
+    const detailsResponse = await fetch(`${baseUrl}/docs/${docToken}/?api_token=${zapsignToken}`, {
       method: 'GET',
-      headers: { 'Authorization': `Bearer ${zapsignToken}` }
+      headers: { 'Content-Type': 'application/json' }
     });
 
     if (!detailsResponse.ok) {
@@ -240,9 +233,9 @@ export const getDocumentStatus = async (req, res, next) => {
 
     // 3. Chamar a ZapSign para buscar a timeline de auditoria (Signer Log)
     console.log(`📅 Buscando log de auditoria para o documento ${docToken}...`);
-    const logResponse = await fetch(`${baseUrl}/docs/signer-log/${docToken}?download_pdf=false`, {
+    const logResponse = await fetch(`${baseUrl}/docs/signer-log/${docToken}?download_pdf=false&api_token=${zapsignToken}`, {
       method: 'GET',
-      headers: { 'Authorization': `Bearer ${zapsignToken}` }
+      headers: { 'Content-Type': 'application/json' }
     });
 
     let timeline = [];
@@ -256,8 +249,8 @@ export const getDocumentStatus = async (req, res, next) => {
     const updatedMetadata = {
       ...currentMeta,
       status: detailsResult.status || currentMeta.status,
-      original_file: detailsResult.original_file_url || currentMeta.original_file,
-      signed_file: detailsResult.signed_file_url || currentMeta.signed_file,
+      original_file: detailsResult.original_file || currentMeta.original_file,
+      signed_file: detailsResult.signed_file || currentMeta.signed_file,
       signers: (detailsResult.signers || []).map(s => {
         // Preservar o sign_url obtido na criação caso não retorne
         const existingSigner = (currentMeta.signers || []).find(es => es.email === s.email);
@@ -271,20 +264,66 @@ export const getDocumentStatus = async (req, res, next) => {
       })
     };
 
-    // 5. Atualizar o Supabase se o status ou arquivo tiver mudado
-    const hasChanged = JSON.stringify(currentMeta) !== JSON.stringify(updatedMetadata);
-    if (hasChanged) {
-      const { error: updateError } = await supabase
-        .from('documents')
-        .update({ zapsign_metadata: updatedMetadata })
-        .eq('id', document_id);
-
-      if (updateError) {
-        console.warn('⚠️ Erro ao atualizar zapsign_metadata no Supabase:', updateError.message);
+    // 5. Se o status for 'signed', faz o download do PDF e armazena no Supabase Storage
+    let finalFilePath = document.file_path;
+    let finalMimeType = document.mime_type;
+    let finalFileSize = document.file_size;
+    let finalFileName = document.file_name;
+    
+    // Se mudou para assinado e ainda não salvamos o arquivo final em anexo...
+    const isAlreadyDownloaded = document.document_type === 'anexo' && finalFilePath && finalFilePath.includes('signed/');
+    if (updatedMetadata.status === 'signed' && !isAlreadyDownloaded && updatedMetadata.signed_file) {
+      try {
+        console.log(`📥 Baixando documento assinado da ZapSign: ${updatedMetadata.signed_file}`);
+        const pdfResponse = await fetch(updatedMetadata.signed_file);
+        if (pdfResponse.ok) {
+          const pdfBuffer = await pdfResponse.arrayBuffer();
+          const fileName = `${document.title.replace(/[^\w.-]+/g, '_')}_Assinado.pdf`;
+          const filePath = `signed/${document_id}/${Date.now()}_${fileName}`;
+          
+          const { error: uploadError } = await supabase.storage
+            .from('crm_documents')
+            .upload(filePath, pdfBuffer, {
+              contentType: 'application/pdf',
+              upsert: true
+            });
+            
+          if (!uploadError) {
+            finalFilePath = filePath;
+            finalMimeType = 'application/pdf';
+            finalFileSize = pdfBuffer.byteLength;
+            finalFileName = fileName;
+            console.log(`✅ Documento assinado salvo no storage: ${filePath}`);
+          } else {
+            console.warn('⚠️ Erro ao fazer upload do PDF assinado:', uploadError.message);
+          }
+        }
+      } catch (err) {
+        console.warn('⚠️ Erro ao baixar ou salvar PDF assinado:', err.message);
       }
     }
 
-    // Retornar a resposta combinando detalhes do documento, signatários e timeline
+    // 6. Atualizar o Supabase se o status ou arquivo tiver mudado
+    const hasChanged = JSON.stringify(currentMeta) !== JSON.stringify(updatedMetadata) || finalFilePath !== document.file_path;
+    if (hasChanged) {
+      const { error: updateError } = await supabase
+        .from('documents')
+        .update({ 
+          zapsign_metadata: updatedMetadata,
+          file_path: finalFilePath,
+          mime_type: finalMimeType,
+          file_size: finalFileSize,
+          file_name: finalFileName,
+          document_type: updatedMetadata.status === 'signed' ? 'anexo' : document.document_type
+        })
+        .eq('id', document_id);
+
+      if (updateError) {
+        console.warn('⚠️ Erro ao atualizar documento no Supabase:', updateError.message);
+      }
+    }
+
+    // 7. Retornar a resposta combinando detalhes do documento, signatários e timeline
     if (updatedMetadata.status === 'signed' && document.lead_id) {
       await moveLeadToStage(supabase, document.lead_id, 'ganho-onboarding');
     }

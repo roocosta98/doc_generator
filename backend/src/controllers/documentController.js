@@ -753,6 +753,20 @@ export const generateDocument = async (req, res, next) => {
     // Apenas se o usuário estiver autenticado e o RLS permitir
     let savedDocument = null;
     if (token) {
+      const filePath = `generated/${template.id}/${Date.now()}.html`;
+      
+      // Fazer upload do HTML para o Supabase Storage (bucket crm_documents)
+      const { error: uploadError } = await supabase.storage
+        .from('crm_documents')
+        .upload(filePath, finalHTML, {
+          contentType: 'text/html',
+          upsert: true
+        });
+        
+      if (uploadError) {
+        console.warn('⚠️ Aviso: Erro ao fazer upload do HTML no storage:', uploadError.message);
+      }
+
       const { data: docRecord, error: docError } = await supabase
         .from('documents')
         .insert({
@@ -762,7 +776,7 @@ export const generateDocument = async (req, res, next) => {
           uploaded_by: currentUser?.id || template.user_id,
           title: document_title || `Cópia Gerada - ${template.title}`,
           file_name: `${(document_title || template.title).replace(/[^\w.-]+/g, '_')}.html`,
-          file_path: `generated/${template.id}/${Date.now()}.html`,
+          file_path: filePath,
           bucket_name: 'crm_documents',
           mime_type: 'text/html',
           file_size: Buffer.byteLength(finalHTML, 'utf8'),

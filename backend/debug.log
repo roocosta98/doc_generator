@@ -470,3 +470,528 @@ Replacements log:
   Replace {honorario_mensal}: val="" (type=string)
   Replace {validade_proposta}: val=undefined (type=undefined)
 
+[2026-06-18T03:12:49.324Z] GENERATE REQUEST:
+  template_id: "1443a62f-9595-44f8-849b-012d0ab003f4"
+  document_title: "Contrato - MAGAZINE LUIZA - Modelo de proposta"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": ""
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {validade_proposta}: val=undefined (type=undefined)
+
+[2026-06-18T04:00:02.726Z] GENERATE REQUEST:
+  template_id: "a1d646ea-64ae-4be9-82bf-2566c75eba5a"
+  document_title: "Proposta - GRUPO CASAS BAHIA S.A. - PROPOSTA COMERCIAL"
+  form_data: {
+  "cliente_nome": "GRUPO CASAS BAHIA S.A.",
+  "contato_nome": "Fabio Eduardo De Pieri Spina",
+  "razao_social": "GRUPO CASAS BAHIA S.A.",
+  "nome_fantasia": "GRUPO CASAS BAHIA S.A.",
+  "cnpj": "33.041.260/0652-90",
+  "email_cliente": "setorfiscal.csc@viavarejo.com.br",
+  "whatsapp_cliente": "(11) 11111-111",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 7.124.849.495,39",
+  "honorario_mensal": "R$ 500.000,00",
+  "servicos": "Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c, BPO Financeiro 50913300-0ecb-4d96-b1e2-3adc37c2ae2c",
+  "funcionarios": "",
+  "inscricao_estadual": "133091229115",
+  "inscricao_municipal": "",
+  "observacoes_crm": "",
+  "validade_proposta": "2026-06-27",
+  "condicoes_comerciais": "testestes",
+  "observacoes_proposta": "R$ 500.000,00"
+}
+
+Replacements log:
+  Replace {contato_nome}: val="Fabio Eduardo De Pieri Spina" (type=string)
+  Replace {razao_social}: val="GRUPO CASAS BAHIA S.A." (type=string)
+  Replace {cnpj}: val="33.041.260/0652-90" (type=string)
+  Replace {cliente_nome}: val="GRUPO CASAS BAHIA S.A." (type=string)
+  Replace {razao_social}: val="GRUPO CASAS BAHIA S.A." (type=string)
+  Replace {nome_fantasia}: val="GRUPO CASAS BAHIA S.A." (type=string)
+  Replace {cnpj}: val="33.041.260/0652-90" (type=string)
+  Replace {inscricao_estadual}: val="133091229115" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {contato_nome}: val="Fabio Eduardo De Pieri Spina" (type=string)
+  Replace {email_cliente}: val="setorfiscal.csc@viavarejo.com.br" (type=string)
+  Replace {whatsapp_cliente}: val="(11) 11111-111" (type=string)
+  Replace {regime_tributario}: val="" (type=string)
+  Replace {faturamento_estimado}: val="R$ 7.124.849.495,39" (type=string)
+  Replace {funcionarios}: val="" (type=string)
+  Replace {servicos}: val="Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c, BPO Financeiro 50913300-0ecb-4d96-b1e2-3adc37c2ae2c" (type=string)
+  Replace {honorario_mensal}: val="R$ 500.000,00" (type=string)
+  Replace {validade_proposta}: val="2026-06-27" (type=string)
+  Replace {observacoes_crm}: val="" (type=string)
+  Replace {razao_social}: val="GRUPO CASAS BAHIA S.A." (type=string)
+  Replace {contato_nome}: val="Fabio Eduardo De Pieri Spina" (type=string)
+
+[2026-06-18T04:06:43.834Z] GENERATE REQUEST:
+  template_id: "6ec5384b-3915-480c-9e51-8b3928b407d1"
+  document_title: "Contrato - GRUPO CASAS BAHIA S.A. - CONTRATO DE PRESTAÇÃO DE SERVIÇOS CONTÁBEIS"
+  form_data: {
+  "cliente_nome": "GRUPO CASAS BAHIA S.A.",
+  "contato_nome": "Fabio Eduardo De Pieri Spina",
+  "razao_social": "GRUPO CASAS BAHIA S.A.",
+  "nome_fantasia": "GRUPO CASAS BAHIA S.A.",
+  "cnpj": "33.041.260/0652-90",
+  "email_cliente": "setorfiscal.csc@viavarejo.com.br",
+  "whatsapp_cliente": "(11) 11111-111",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 7.124.849.495,39",
+  "honorario_mensal": "R$ 500.000,00",
+  "servicos": "Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c, BPO Financeiro 50913300-0ecb-4d96-b1e2-3adc37c2ae2c",
+  "funcionarios": "",
+  "inscricao_estadual": "133091229115",
+  "inscricao_municipal": "",
+  "observacoes_crm": "",
+  "validade_proposta": "2026-07-02",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 500.000,00"
+}
+
+Replacements log:
+  Replace {razao_social}: val="GRUPO CASAS BAHIA S.A." (type=string)
+  Replace {nome_fantasia}: val="GRUPO CASAS BAHIA S.A." (type=string)
+  Replace {cnpj}: val="33.041.260/0652-90" (type=string)
+  Replace {inscricao_estadual}: val="133091229115" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {contato_nome}: val="Fabio Eduardo De Pieri Spina" (type=string)
+  Replace {email_cliente}: val="setorfiscal.csc@viavarejo.com.br" (type=string)
+  Replace {whatsapp_cliente}: val="(11) 11111-111" (type=string)
+  Replace {cliente_nome}: val="GRUPO CASAS BAHIA S.A." (type=string)
+  Replace {servicos}: val="Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c, BPO Financeiro 50913300-0ecb-4d96-b1e2-3adc37c2ae2c" (type=string)
+  Replace {regime_tributario}: val="" (type=string)
+  Replace {faturamento_estimado}: val="R$ 7.124.849.495,39" (type=string)
+  Replace {funcionarios}: val="" (type=string)
+  Replace {honorario_mensal}: val="R$ 500.000,00" (type=string)
+  Replace {observacoes_crm}: val="" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {razao_social}: val="GRUPO CASAS BAHIA S.A." (type=string)
+  Replace {contato_nome}: val="Fabio Eduardo De Pieri Spina" (type=string)
+
+[2026-06-18T05:01:50.970Z] GENERATE REQUEST:
+  template_id: "6ec5384b-3915-480c-9e51-8b3928b407d1"
+  document_title: "Contrato - MAGAZINE LUIZA - CONTRATO DE PRESTAÇÃO DE SERVIÇOS CONTÁBEIS"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": "",
+  "validade_proposta": "1998-03-27",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": ""
+}
+
+Replacements log:
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {nome_fantasia}: val="MAGAZINE LUIZA" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {inscricao_estadual}: val="310035324119" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {cidade}: val="Franca" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {contato_nome}: val="Frederico Trajano Inacio Rodrigues" (type=string)
+  Replace {email_cliente}: val="fiscal.estadual@magazineluiza.com.br" (type=string)
+  Replace {whatsapp_cliente}: val="(16) 37112-002" (type=string)
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {regime_tributario}: val="" (type=string)
+  Replace {faturamento_estimado}: val="R$ 14.202.162.483,70" (type=string)
+  Replace {funcionarios}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {observacoes_crm}: val="" (type=string)
+  Replace {cidade}: val="Franca" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {contato_nome}: val="Frederico Trajano Inacio Rodrigues" (type=string)
+
+[2026-06-18T05:08:07.724Z] GENERATE REQUEST:
+  template_id: "6ec5384b-3915-480c-9e51-8b3928b407d1"
+  document_title: "Contrato - MAGAZINE LUIZA - CONTRATO DE PRESTAÇÃO DE SERVIÇOS CONTÁBEIS"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": "",
+  "validade_proposta": "",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": ""
+}
+
+Replacements log:
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {nome_fantasia}: val="MAGAZINE LUIZA" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {inscricao_estadual}: val="310035324119" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {cidade}: val="Franca" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {contato_nome}: val="Frederico Trajano Inacio Rodrigues" (type=string)
+  Replace {email_cliente}: val="fiscal.estadual@magazineluiza.com.br" (type=string)
+  Replace {whatsapp_cliente}: val="(16) 37112-002" (type=string)
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {regime_tributario}: val="" (type=string)
+  Replace {faturamento_estimado}: val="R$ 14.202.162.483,70" (type=string)
+  Replace {funcionarios}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {observacoes_crm}: val="" (type=string)
+  Replace {cidade}: val="Franca" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {contato_nome}: val="Frederico Trajano Inacio Rodrigues" (type=string)
+
+[2026-06-18T05:11:12.277Z] GENERATE REQUEST:
+  template_id: "6ec5384b-3915-480c-9e51-8b3928b407d1"
+  document_title: "Contrato - MAGAZINE LUIZA - CONTRATO DE PRESTAÇÃO DE SERVIÇOS CONTÁBEIS"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": "",
+  "validade_proposta": "",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": ""
+}
+
+Replacements log:
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {nome_fantasia}: val="MAGAZINE LUIZA" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {inscricao_estadual}: val="310035324119" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {cidade}: val="Franca" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {contato_nome}: val="Frederico Trajano Inacio Rodrigues" (type=string)
+  Replace {email_cliente}: val="fiscal.estadual@magazineluiza.com.br" (type=string)
+  Replace {whatsapp_cliente}: val="(16) 37112-002" (type=string)
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {regime_tributario}: val="" (type=string)
+  Replace {faturamento_estimado}: val="R$ 14.202.162.483,70" (type=string)
+  Replace {funcionarios}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {observacoes_crm}: val="" (type=string)
+  Replace {cidade}: val="Franca" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {contato_nome}: val="Frederico Trajano Inacio Rodrigues" (type=string)
+
+[2026-06-18T05:45:07.976Z] GENERATE REQUEST:
+  template_id: "6ec5384b-3915-480c-9e51-8b3928b407d1"
+  document_title: "Proposta - MAGAZINE LUIZA - CONTRATO DE PRESTAÇÃO DE SERVIÇOS CONTÁBEIS"
+  form_data: {
+  "cliente_nome": "MAGAZINE LUIZA",
+  "contato_nome": "Frederico Trajano Inacio Rodrigues",
+  "razao_social": "MAGAZINE LUIZA S/A",
+  "nome_fantasia": "MAGAZINE LUIZA",
+  "cnpj": "47.960.950/0001-21",
+  "email_cliente": "fiscal.estadual@magazineluiza.com.br",
+  "whatsapp_cliente": "(16) 37112-002",
+  "cidade": "Franca",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 14.202.162.483,70",
+  "honorario_mensal": "",
+  "servicos": "",
+  "funcionarios": "",
+  "inscricao_estadual": "310035324119",
+  "inscricao_municipal": "",
+  "observacoes_crm": "",
+  "validade_proposta": "",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": ""
+}
+
+Replacements log:
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {nome_fantasia}: val="MAGAZINE LUIZA" (type=string)
+  Replace {cnpj}: val="47.960.950/0001-21" (type=string)
+  Replace {inscricao_estadual}: val="310035324119" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {cidade}: val="Franca" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {contato_nome}: val="Frederico Trajano Inacio Rodrigues" (type=string)
+  Replace {email_cliente}: val="fiscal.estadual@magazineluiza.com.br" (type=string)
+  Replace {whatsapp_cliente}: val="(16) 37112-002" (type=string)
+  Replace {cliente_nome}: val="MAGAZINE LUIZA" (type=string)
+  Replace {servicos}: val="" (type=string)
+  Replace {regime_tributario}: val="Lucro Presumido" (type=string)
+  Replace {faturamento_estimado}: val="R$ 14.202.162.483,70" (type=string)
+  Replace {funcionarios}: val="" (type=string)
+  Replace {honorario_mensal}: val="" (type=string)
+  Replace {observacoes_crm}: val="" (type=string)
+  Replace {cidade}: val="Franca" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {razao_social}: val="MAGAZINE LUIZA S/A" (type=string)
+  Replace {contato_nome}: val="Frederico Trajano Inacio Rodrigues" (type=string)
+
+[2026-06-18T06:03:20.229Z] GENERATE REQUEST:
+  template_id: "6ec5384b-3915-480c-9e51-8b3928b407d1"
+  document_title: "Proposta - SAMSUNG DA AMAZONIA - CONTRATO DE PRESTAÇÃO DE SERVIÇOS CONTÁBEIS"
+  form_data: {
+  "cliente_nome": "SAMSUNG DA AMAZONIA",
+  "contato_nome": "Hong Sang Jo",
+  "razao_social": "SAMSUNG ELETRONICA DA AMAZONIA LTDA",
+  "nome_fantasia": "SAMSUNG DA AMAZONIA",
+  "cnpj": "00.280.273/0001-37",
+  "email_cliente": "nfservico@samsung.com",
+  "whatsapp_cliente": "(92) 40091-014",
+  "cidade": "Manaus",
+  "estado": "AM",
+  "regime_tributario": "Simples Nacional",
+  "faturamento_estimado": "R$ 1.038.408.444,46",
+  "honorario_mensal": "R$ 5.000,00",
+  "servicos": "Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c",
+  "funcionarios": "3",
+  "inscricao_estadual": "063005379",
+  "inscricao_municipal": "",
+  "observacoes_crm": "teste",
+  "validade_proposta": "2026-06-27",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 5.000,00"
+}
+
+Replacements log:
+  Replace {razao_social}: val="SAMSUNG ELETRONICA DA AMAZONIA LTDA" (type=string)
+  Replace {nome_fantasia}: val="SAMSUNG DA AMAZONIA" (type=string)
+  Replace {cnpj}: val="00.280.273/0001-37" (type=string)
+  Replace {inscricao_estadual}: val="063005379" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {cidade}: val="Manaus" (type=string)
+  Replace {estado}: val="AM" (type=string)
+  Replace {contato_nome}: val="Hong Sang Jo" (type=string)
+  Replace {email_cliente}: val="nfservico@samsung.com" (type=string)
+  Replace {whatsapp_cliente}: val="(92) 40091-014" (type=string)
+  Replace {cliente_nome}: val="SAMSUNG DA AMAZONIA" (type=string)
+  Replace {servicos}: val="Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c" (type=string)
+  Replace {regime_tributario}: val="Simples Nacional" (type=string)
+  Replace {faturamento_estimado}: val="R$ 1.038.408.444,46" (type=string)
+  Replace {funcionarios}: val="3" (type=string)
+  Replace {honorario_mensal}: val="R$ 5.000,00" (type=string)
+  Replace {observacoes_crm}: val="teste" (type=string)
+  Replace {cidade}: val="Manaus" (type=string)
+  Replace {estado}: val="AM" (type=string)
+  Replace {razao_social}: val="SAMSUNG ELETRONICA DA AMAZONIA LTDA" (type=string)
+  Replace {contato_nome}: val="Hong Sang Jo" (type=string)
+
+[2026-06-18T06:04:36.010Z] GENERATE REQUEST:
+  template_id: "6ec5384b-3915-480c-9e51-8b3928b407d1"
+  document_title: "Contrato - SAMSUNG DA AMAZONIA - CONTRATO DE PRESTAÇÃO DE SERVIÇOS CONTÁBEIS"
+  form_data: {
+  "cliente_nome": "SAMSUNG DA AMAZONIA",
+  "contato_nome": "Hong Sang Jo",
+  "razao_social": "SAMSUNG ELETRONICA DA AMAZONIA LTDA",
+  "nome_fantasia": "SAMSUNG DA AMAZONIA",
+  "cnpj": "00.280.273/0001-37",
+  "email_cliente": "nfservico@samsung.com",
+  "whatsapp_cliente": "(92) 40091-014",
+  "cidade": "Manaus",
+  "estado": "AM",
+  "regime_tributario": "Simples Nacional",
+  "faturamento_estimado": "R$ 1.038.408.444,46",
+  "honorario_mensal": "R$ 5.000,00",
+  "servicos": "Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c",
+  "funcionarios": "3",
+  "inscricao_estadual": "063005379",
+  "inscricao_municipal": "",
+  "observacoes_crm": "teste",
+  "validade_proposta": "1998-03-27",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 5.000,00"
+}
+
+Replacements log:
+  Replace {razao_social}: val="SAMSUNG ELETRONICA DA AMAZONIA LTDA" (type=string)
+  Replace {nome_fantasia}: val="SAMSUNG DA AMAZONIA" (type=string)
+  Replace {cnpj}: val="00.280.273/0001-37" (type=string)
+  Replace {inscricao_estadual}: val="063005379" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {cidade}: val="Manaus" (type=string)
+  Replace {estado}: val="AM" (type=string)
+  Replace {contato_nome}: val="Hong Sang Jo" (type=string)
+  Replace {email_cliente}: val="nfservico@samsung.com" (type=string)
+  Replace {whatsapp_cliente}: val="(92) 40091-014" (type=string)
+  Replace {cliente_nome}: val="SAMSUNG DA AMAZONIA" (type=string)
+  Replace {servicos}: val="Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c" (type=string)
+  Replace {regime_tributario}: val="Simples Nacional" (type=string)
+  Replace {faturamento_estimado}: val="R$ 1.038.408.444,46" (type=string)
+  Replace {funcionarios}: val="3" (type=string)
+  Replace {honorario_mensal}: val="R$ 5.000,00" (type=string)
+  Replace {observacoes_crm}: val="teste" (type=string)
+  Replace {cidade}: val="Manaus" (type=string)
+  Replace {estado}: val="AM" (type=string)
+  Replace {razao_social}: val="SAMSUNG ELETRONICA DA AMAZONIA LTDA" (type=string)
+  Replace {contato_nome}: val="Hong Sang Jo" (type=string)
+
+[2026-06-18T16:41:53.811Z] GENERATE REQUEST:
+  template_id: "a1d646ea-64ae-4be9-82bf-2566c75eba5a"
+  document_title: "Proposta - ATACADAO - PROPOSTA COMERCIAL"
+  form_data: {
+  "cliente_nome": "ATACADAO",
+  "contato_nome": "Marco Aparecido De Oliveira",
+  "razao_social": "ATACADAO S.A.",
+  "nome_fantasia": "ATACADAO",
+  "cnpj": "75.315.333/0001-09",
+  "email_cliente": "tributario@atacadao.com.br",
+  "whatsapp_cliente": "(11) 29678-261",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Simples Nacional",
+  "faturamento_estimado": "R$ 17.304.241.526,26",
+  "honorario_mensal": "R$ 55.555,55",
+  "servicos": "BPO Financeiro 50913300-0ecb-4d96-b1e2-3adc37c2ae2c, Teste, Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c",
+  "funcionarios": "55",
+  "inscricao_estadual": "110117560114",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Tetse",
+  "validade_proposta": "2026-03-27",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 55.555,55"
+}
+
+Replacements log:
+  Replace {contato_nome}: val="Marco Aparecido De Oliveira" (type=string)
+  Replace {razao_social}: val="ATACADAO S.A." (type=string)
+  Replace {cnpj}: val="75.315.333/0001-09" (type=string)
+  Replace {cliente_nome}: val="ATACADAO" (type=string)
+  Replace {razao_social}: val="ATACADAO S.A." (type=string)
+  Replace {nome_fantasia}: val="ATACADAO" (type=string)
+  Replace {cnpj}: val="75.315.333/0001-09" (type=string)
+  Replace {inscricao_estadual}: val="110117560114" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {contato_nome}: val="Marco Aparecido De Oliveira" (type=string)
+  Replace {email_cliente}: val="tributario@atacadao.com.br" (type=string)
+  Replace {whatsapp_cliente}: val="(11) 29678-261" (type=string)
+  Replace {regime_tributario}: val="Simples Nacional" (type=string)
+  Replace {faturamento_estimado}: val="R$ 17.304.241.526,26" (type=string)
+  Replace {funcionarios}: val="55" (type=string)
+  Replace {servicos}: val="BPO Financeiro 50913300-0ecb-4d96-b1e2-3adc37c2ae2c, Teste, Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c" (type=string)
+  Replace {honorario_mensal}: val="R$ 55.555,55" (type=string)
+  Replace {validade_proposta}: val="2026-03-27" (type=string)
+  Replace {observacoes_crm}: val="Tetse" (type=string)
+  Replace {razao_social}: val="ATACADAO S.A." (type=string)
+  Replace {contato_nome}: val="Marco Aparecido De Oliveira" (type=string)
+
+[2026-06-18T16:43:06.964Z] GENERATE REQUEST:
+  template_id: "6ec5384b-3915-480c-9e51-8b3928b407d1"
+  document_title: "Contrato - ATACADAO - CONTRATO DE PRESTAÇÃO DE SERVIÇOS CONTÁBEIS"
+  form_data: {
+  "cliente_nome": "ATACADAO",
+  "contato_nome": "Marco Aparecido De Oliveira",
+  "razao_social": "ATACADAO S.A.",
+  "nome_fantasia": "ATACADAO",
+  "cnpj": "75.315.333/0001-09",
+  "email_cliente": "tributario@atacadao.com.br",
+  "whatsapp_cliente": "(11) 29678-261",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Simples Nacional",
+  "faturamento_estimado": "R$ 17.304.241.526,26",
+  "honorario_mensal": "R$ 55.555,55",
+  "servicos": "BPO Financeiro 50913300-0ecb-4d96-b1e2-3adc37c2ae2c, Teste, Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c",
+  "funcionarios": "55",
+  "inscricao_estadual": "110117560114",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Tetse",
+  "validade_proposta": "2026-03-27",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 55.555,55"
+}
+
+Replacements log:
+  Replace {razao_social}: val="ATACADAO S.A." (type=string)
+  Replace {nome_fantasia}: val="ATACADAO" (type=string)
+  Replace {cnpj}: val="75.315.333/0001-09" (type=string)
+  Replace {inscricao_estadual}: val="110117560114" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {contato_nome}: val="Marco Aparecido De Oliveira" (type=string)
+  Replace {email_cliente}: val="tributario@atacadao.com.br" (type=string)
+  Replace {whatsapp_cliente}: val="(11) 29678-261" (type=string)
+  Replace {cliente_nome}: val="ATACADAO" (type=string)
+  Replace {servicos}: val="BPO Financeiro 50913300-0ecb-4d96-b1e2-3adc37c2ae2c, Teste, Contabilidade 50913300-0ecb-4d96-b1e2-3adc37c2ae2c" (type=string)
+  Replace {regime_tributario}: val="Simples Nacional" (type=string)
+  Replace {faturamento_estimado}: val="R$ 17.304.241.526,26" (type=string)
+  Replace {funcionarios}: val="55" (type=string)
+  Replace {honorario_mensal}: val="R$ 55.555,55" (type=string)
+  Replace {observacoes_crm}: val="Tetse" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {razao_social}: val="ATACADAO S.A." (type=string)
+  Replace {contato_nome}: val="Marco Aparecido De Oliveira" (type=string)
+
