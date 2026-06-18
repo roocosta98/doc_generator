@@ -34,11 +34,25 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Rota de Health Check
-app.get('/health', (req, res) => {
+app.get('/health', async (req, res) => {
+  let supabaseFetchResult = 'not_attempted';
+  if (process.env.SUPABASE_URL) {
+    try {
+      const start = Date.now();
+      const testRes = await fetch(process.env.SUPABASE_URL);
+      supabaseFetchResult = `success (status: ${testRes.status}, time: ${Date.now() - start}ms)`;
+    } catch (err) {
+      supabaseFetchResult = `failed: ${err.message}`;
+      if (err.cause) {
+        supabaseFetchResult += ` (cause: ${err.cause.message || err.cause})`;
+      }
+    }
+  }
   res.status(200).json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
     service: 'Document Generator API Engine',
+    supabaseFetchResult,
     diagnostics: {
       hasSupabaseUrl: !!process.env.SUPABASE_URL,
       supabaseUrlLength: process.env.SUPABASE_URL ? process.env.SUPABASE_URL.length : 0,
