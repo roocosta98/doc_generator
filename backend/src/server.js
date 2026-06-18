@@ -32,7 +32,14 @@ app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
-    service: 'Document Generator API Engine'
+    service: 'Document Generator API Engine',
+    diagnostics: {
+      hasSupabaseUrl: !!process.env.SUPABASE_URL,
+      supabaseUrlLength: process.env.SUPABASE_URL ? process.env.SUPABASE_URL.length : 0,
+      hasSupabaseAnonKey: !!process.env.SUPABASE_ANON_KEY,
+      hasSupabaseServiceRoleKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+      nodeEnv: process.env.NODE_ENV || 'not set'
+    }
   });
 });
 
