@@ -995,3 +995,687 @@ Replacements log:
   Replace {razao_social}: val="ATACADAO S.A." (type=string)
   Replace {contato_nome}: val="Marco Aparecido De Oliveira" (type=string)
 
+[2026-06-29T12:33:49.400Z] GENERATE REQUEST:
+  template_id: "e3adee34-91b2-4557-a34f-6f307fa9c432"
+  document_title: "Proposta - ENERFRI - Proposta"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="ENERFRI" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {nome_fantasia}: val="ENERFRI" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {email_cliente}: val="enerfri.adm.part@gmail.com" (type=string)
+  Replace {whatsapp_cliente}: val="(11) 97006-202" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {inscricao_estadual}: val="" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {regime_tributario}: val="Lucro Presumido" (type=string)
+  Replace {faturamento_estimado}: val="R$ 0,00" (type=string)
+  Replace {funcionarios}: val="0" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {condicoes_comerciais}: val="" (type=string)
+  Replace {observacoes_proposta}: val="R$ 900,00" (type=string)
+  Replace {observacoes_crm}: val="Cliente do Grupo da Frandor: 
+Fiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf
+Contábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial 
+Pessoal - Precisa ver com a Sandra se possuem retiradas de pró labores
+Onboarding - Solicitar as procurações para a Sandra
+Certificado - Solicitar o Certificado Digital" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-29T12:35:28.129Z] GENERATE REQUEST:
+  template_id: "e3adee34-91b2-4557-a34f-6f307fa9c432"
+  document_title: "Proposta - ENERFRI - Proposta"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="ENERFRI" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {nome_fantasia}: val="ENERFRI" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {email_cliente}: val="enerfri.adm.part@gmail.com" (type=string)
+  Replace {whatsapp_cliente}: val="(11) 97006-202" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {inscricao_estadual}: val="" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {regime_tributario}: val="Lucro Presumido" (type=string)
+  Replace {faturamento_estimado}: val="R$ 0,00" (type=string)
+  Replace {funcionarios}: val="0" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {condicoes_comerciais}: val="" (type=string)
+  Replace {observacoes_proposta}: val="R$ 900,00" (type=string)
+  Replace {observacoes_crm}: val="Cliente do Grupo da Frandor: 
+Fiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf
+Contábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial 
+Pessoal - Precisa ver com a Sandra se possuem retiradas de pró labores
+Onboarding - Solicitar as procurações para a Sandra
+Certificado - Solicitar o Certificado Digital" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-29T12:47:17.035Z] GENERATE REQUEST:
+  template_id: "e3adee34-91b2-4557-a34f-6f307fa9c432"
+  document_title: "Proposta - ENERFRI - Proposta"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="ENERFRI" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {nome_fantasia}: val="ENERFRI" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {email_cliente}: val="enerfri.adm.part@gmail.com" (type=string)
+  Replace {whatsapp_cliente}: val="(11) 97006-202" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {inscricao_estadual}: val="" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {regime_tributario}: val="Lucro Presumido" (type=string)
+  Replace {faturamento_estimado}: val="R$ 0,00" (type=string)
+  Replace {funcionarios}: val="0" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {condicoes_comerciais}: val="" (type=string)
+  Replace {observacoes_proposta}: val="R$ 900,00" (type=string)
+  Replace {observacoes_crm}: val="Cliente do Grupo da Frandor: 
+Fiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf
+Contábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial 
+Pessoal - Precisa ver com a Sandra se possuem retiradas de pró labores
+Onboarding - Solicitar as procurações para a Sandra
+Certificado - Solicitar o Certificado Digital" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-29T12:48:55.809Z] GENERATE REQUEST:
+  template_id: "cb2378bc-7804-4112-931c-6694c0f83864"
+  document_title: "Proposta - ENERFRI - propsprrr333"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-29T12:49:14.709Z] GENERATE REQUEST:
+  template_id: "e3adee34-91b2-4557-a34f-6f307fa9c432"
+  document_title: "Proposta - ENERFRI - Propostadddd"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="ENERFRI" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {nome_fantasia}: val="ENERFRI" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {email_cliente}: val="enerfri.adm.part@gmail.com" (type=string)
+  Replace {whatsapp_cliente}: val="(11) 97006-202" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {inscricao_estadual}: val="" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {regime_tributario}: val="Lucro Presumido" (type=string)
+  Replace {faturamento_estimado}: val="R$ 0,00" (type=string)
+  Replace {funcionarios}: val="0" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {condicoes_comerciais}: val="" (type=string)
+  Replace {observacoes_proposta}: val="R$ 900,00" (type=string)
+  Replace {observacoes_crm}: val="Cliente do Grupo da Frandor: 
+Fiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf
+Contábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial 
+Pessoal - Precisa ver com a Sandra se possuem retiradas de pró labores
+Onboarding - Solicitar as procurações para a Sandra
+Certificado - Solicitar o Certificado Digital" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-29T12:49:23.771Z] GENERATE REQUEST:
+  template_id: "e3adee34-91b2-4557-a34f-6f307fa9c432"
+  document_title: "Proposta - ENERFRI - Propostadddd"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="ENERFRI" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {nome_fantasia}: val="ENERFRI" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {email_cliente}: val="enerfri.adm.part@gmail.com" (type=string)
+  Replace {whatsapp_cliente}: val="(11) 97006-202" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {inscricao_estadual}: val="" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {regime_tributario}: val="Lucro Presumido" (type=string)
+  Replace {faturamento_estimado}: val="R$ 0,00" (type=string)
+  Replace {funcionarios}: val="0" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {condicoes_comerciais}: val="" (type=string)
+  Replace {observacoes_proposta}: val="R$ 900,00" (type=string)
+  Replace {observacoes_crm}: val="Cliente do Grupo da Frandor: 
+Fiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf
+Contábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial 
+Pessoal - Precisa ver com a Sandra se possuem retiradas de pró labores
+Onboarding - Solicitar as procurações para a Sandra
+Certificado - Solicitar o Certificado Digital" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-29T12:49:44.087Z] GENERATE REQUEST:
+  template_id: "69dbf547-9370-42e3-b593-2b4fa397c8c5"
+  document_title: "Proposta - ENERFRI - prop24"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-29T12:50:21.503Z] GENERATE REQUEST:
+  template_id: "e3adee34-91b2-4557-a34f-6f307fa9c432"
+  document_title: "Proposta - ENERFRI - Propostadddd"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="ENERFRI" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {nome_fantasia}: val="ENERFRI" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {email_cliente}: val="enerfri.adm.part@gmail.com" (type=string)
+  Replace {whatsapp_cliente}: val="(11) 97006-202" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {inscricao_estadual}: val="" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {regime_tributario}: val="Lucro Presumido" (type=string)
+  Replace {faturamento_estimado}: val="R$ 0,00" (type=string)
+  Replace {funcionarios}: val="0" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {condicoes_comerciais}: val="" (type=string)
+  Replace {observacoes_proposta}: val="R$ 900,00" (type=string)
+  Replace {observacoes_crm}: val="Cliente do Grupo da Frandor: 
+Fiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf
+Contábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial 
+Pessoal - Precisa ver com a Sandra se possuem retiradas de pró labores
+Onboarding - Solicitar as procurações para a Sandra
+Certificado - Solicitar o Certificado Digital" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-29T12:50:46.396Z] GENERATE REQUEST:
+  template_id: "e3adee34-91b2-4557-a34f-6f307fa9c432"
+  document_title: "Proposta - ENERFRI - Propostadddd"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {cliente_nome}: val="ENERFRI" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {nome_fantasia}: val="ENERFRI" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {email_cliente}: val="enerfri.adm.part@gmail.com" (type=string)
+  Replace {whatsapp_cliente}: val="(11) 97006-202" (type=string)
+  Replace {cidade}: val="São Paulo" (type=string)
+  Replace {estado}: val="SP" (type=string)
+  Replace {inscricao_estadual}: val="" (type=string)
+  Replace {inscricao_municipal}: val="" (type=string)
+  Replace {regime_tributario}: val="Lucro Presumido" (type=string)
+  Replace {faturamento_estimado}: val="R$ 0,00" (type=string)
+  Replace {funcionarios}: val="0" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {condicoes_comerciais}: val="" (type=string)
+  Replace {observacoes_proposta}: val="R$ 900,00" (type=string)
+  Replace {observacoes_crm}: val="Cliente do Grupo da Frandor: 
+Fiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf
+Contábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial 
+Pessoal - Precisa ver com a Sandra se possuem retiradas de pró labores
+Onboarding - Solicitar as procurações para a Sandra
+Certificado - Solicitar o Certificado Digital" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-29T12:59:53.586Z] GENERATE REQUEST:
+  template_id: "3ecaddf9-ffa1-4b48-b306-8b9c58b7d45b"
+  document_title: "Proposta - ENERFRI - teste"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-29T13:00:01.563Z] GENERATE REQUEST:
+  template_id: "3ecaddf9-ffa1-4b48-b306-8b9c58b7d45b"
+  document_title: "Proposta - ENERFRI - teste"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-30T13:42:19.836Z] GENERATE REQUEST:
+  template_id: "3ecaddf9-ffa1-4b48-b306-8b9c58b7d45b"
+  document_title: "Proposta - ALFOSLAB ENGENHARIA LTDA - teste"
+  form_data: {
+  "cliente_nome": "ALFOSLAB ENGENHARIA LTDA",
+  "contato_nome": "Alexandre Privitera",
+  "razao_social": "ALFOSLAB ENGENHARIA LTDA",
+  "nome_fantasia": "ALFOSLAB ENGENHARIA LTDA",
+  "cnpj": "66.713.593/0001-41",
+  "email_cliente": "aprivi@gmail.com",
+  "whatsapp_cliente": "(11) 99999-999",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Simples Nacional",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 250,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "159710496118",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente abriu a empresa inicialmente por causa do plano de saúde, logo ele terá despesas de plano de saúde mensalmente. \nIniciou em 05/2026, logo já tem coisa em atraso, mas para os parceiros o fechamento deve ser para 01/06/2026, pois o de 05/2026, quem fará será a Viviane. \nFiscal - Ficar de olho nos serviços tomados e orientar quando for ter emissão de nf. \nPessoal - Começar a ter pro labore a partir do momento que tiver Faturamento, logo deve alinhar com o Fiscal\nContábil - Padrão\nCertificadora - Entrar em contato e fazer o Certificado Digital\nOnboarding - Solicitar a procuração. \nVencimento dia 10\nVariáveis Básicas de Nf's e Lançamentos Contábeis",
+  "validade_proposta": "R$ 250,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 250,00"
+}
+
+Replacements log:
+  Replace {contato_nome}: val="Alexandre Privitera" (type=string)
+  Replace {razao_social}: val="ALFOSLAB ENGENHARIA LTDA" (type=string)
+  Replace {cnpj}: val="66.713.593/0001-41" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 250,00" (type=string)
+  Replace {validade_proposta}: val="R$ 250,00" (type=string)
+
+[2026-06-30T13:51:15.280Z] GENERATE REQUEST:
+  template_id: "3ecaddf9-ffa1-4b48-b306-8b9c58b7d45b"
+  document_title: "Proposta - ALFOSLAB ENGENHARIA LTDA - teste"
+  form_data: {
+  "cliente_nome": "ALFOSLAB ENGENHARIA LTDA",
+  "contato_nome": "Alexandre Privitera",
+  "razao_social": "ALFOSLAB ENGENHARIA LTDA",
+  "nome_fantasia": "ALFOSLAB ENGENHARIA LTDA",
+  "cnpj": "66.713.593/0001-41",
+  "email_cliente": "aprivi@gmail.com",
+  "whatsapp_cliente": "(11) 99999-999",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Simples Nacional",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 250,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "159710496118",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente abriu a empresa inicialmente por causa do plano de saúde, logo ele terá despesas de plano de saúde mensalmente. \nIniciou em 05/2026, logo já tem coisa em atraso, mas para os parceiros o fechamento deve ser para 01/06/2026, pois o de 05/2026, quem fará será a Viviane. \nFiscal - Ficar de olho nos serviços tomados e orientar quando for ter emissão de nf. \nPessoal - Começar a ter pro labore a partir do momento que tiver Faturamento, logo deve alinhar com o Fiscal\nContábil - Padrão\nCertificadora - Entrar em contato e fazer o Certificado Digital\nOnboarding - Solicitar a procuração. \nVencimento dia 10\nVariáveis Básicas de Nf's e Lançamentos Contábeis",
+  "validade_proposta": "R$ 250,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 250,00"
+}
+
+Replacements log:
+  Replace {contato_nome}: val="Alexandre Privitera" (type=string)
+  Replace {razao_social}: val="ALFOSLAB ENGENHARIA LTDA" (type=string)
+  Replace {cnpj}: val="66.713.593/0001-41" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 250,00" (type=string)
+  Replace {validade_proposta}: val="R$ 250,00" (type=string)
+
+[2026-06-30T13:51:22.074Z] GENERATE REQUEST:
+  template_id: "3ecaddf9-ffa1-4b48-b306-8b9c58b7d45b"
+  document_title: "Proposta - ALFOSLAB ENGENHARIA LTDA - teste"
+  form_data: {
+  "cliente_nome": "ALFOSLAB ENGENHARIA LTDA",
+  "contato_nome": "Alexandre Privitera",
+  "razao_social": "ALFOSLAB ENGENHARIA LTDA",
+  "nome_fantasia": "ALFOSLAB ENGENHARIA LTDA",
+  "cnpj": "66.713.593/0001-41",
+  "email_cliente": "aprivi@gmail.com",
+  "whatsapp_cliente": "(11) 99999-999",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Simples Nacional",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 250,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "159710496118",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente abriu a empresa inicialmente por causa do plano de saúde, logo ele terá despesas de plano de saúde mensalmente. \nIniciou em 05/2026, logo já tem coisa em atraso, mas para os parceiros o fechamento deve ser para 01/06/2026, pois o de 05/2026, quem fará será a Viviane. \nFiscal - Ficar de olho nos serviços tomados e orientar quando for ter emissão de nf. \nPessoal - Começar a ter pro labore a partir do momento que tiver Faturamento, logo deve alinhar com o Fiscal\nContábil - Padrão\nCertificadora - Entrar em contato e fazer o Certificado Digital\nOnboarding - Solicitar a procuração. \nVencimento dia 10\nVariáveis Básicas de Nf's e Lançamentos Contábeis",
+  "validade_proposta": "R$ 250,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 250,00"
+}
+
+Replacements log:
+  Replace {contato_nome}: val="Alexandre Privitera" (type=string)
+  Replace {razao_social}: val="ALFOSLAB ENGENHARIA LTDA" (type=string)
+  Replace {cnpj}: val="66.713.593/0001-41" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 250,00" (type=string)
+  Replace {validade_proposta}: val="R$ 250,00" (type=string)
+
+[2026-06-30T14:01:25.823Z] GENERATE REQUEST:
+  template_id: "3ecaddf9-ffa1-4b48-b306-8b9c58b7d45b"
+  document_title: "Proposta - ENERFRI - teste"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+
+[2026-06-30T14:34:09.179Z] GENERATE REQUEST:
+  template_id: "3ecaddf9-ffa1-4b48-b306-8b9c58b7d45b"
+  document_title: "Proposta - ENERFRI - teste"
+  form_data: {
+  "cliente_nome": "ENERFRI",
+  "contato_nome": "Eduardo Nakamura Cane",
+  "razao_social": "ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA",
+  "nome_fantasia": "ENERFRI",
+  "cnpj": "27.321.584/0001-53",
+  "email_cliente": "enerfri.adm.part@gmail.com",
+  "whatsapp_cliente": "(11) 97006-202",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "regime_tributario": "Lucro Presumido",
+  "faturamento_estimado": "R$ 0,00",
+  "honorario_mensal": "R$ 900,00",
+  "servicos": "Contabilidade",
+  "funcionarios": "0",
+  "inscricao_estadual": "",
+  "inscricao_municipal": "",
+  "observacoes_crm": "Cliente do Grupo da Frandor: \nFiscal - Não tem movimento, porém recebe lucros da Frandor, então tem que ver a Reinf\nContábil - Precisa enviar o balancete mensalmente junto com a Frandor - recebe lucros da Frandor e tem Equivalência Patrimonial \nPessoal - Precisa ver com a Sandra se possuem retiradas de pró labores\nOnboarding - Solicitar as procurações para a Sandra\nCertificado - Solicitar o Certificado Digital",
+  "validade_proposta": "R$ 900,00",
+  "condicoes_comerciais": "",
+  "observacoes_proposta": "R$ 900,00"
+}
+
+Replacements log:
+  Replace {contato_nome}: val="Eduardo Nakamura Cane" (type=string)
+  Replace {razao_social}: val="ENERFRI ADMINISTRACAO E PARTICIPACOES LTDA" (type=string)
+  Replace {cnpj}: val="27.321.584/0001-53" (type=string)
+  Replace {servicos}: val="Contabilidade" (type=string)
+  Replace {honorario_mensal}: val="R$ 900,00" (type=string)
+  Replace {validade_proposta}: val="R$ 900,00" (type=string)
+

@@ -112,7 +112,7 @@ function applyLetterhead(content, visualIdentity, title) {
       .document-body {
         font-size: 14px;
         line-height: 1.8;
-        text-align: justify;
+        text-align: ${visualIdentity.textAlign || 'justify'};
         color: #1e293b;
       }
       .document-body .contract-title {
@@ -139,7 +139,7 @@ function applyLetterhead(content, visualIdentity, title) {
     `;
     headerHtml = `
       <div class="header-container">
-        ${logoUrl ? `<img src="${xss(logoUrl)}" alt="Logo" style="max-height: 50px; margin-bottom: 10px;" />` : ''}
+        ${logoUrl ? `<img src="${logoUrl}" alt="Logo" style="max-height: 50px; margin-bottom: 10px;" />` : ''}
         <h1 class="header-title">${xss(headerText || title)}</h1>
         <div class="header-subtitle">Documento Oficial Autenticado</div>
       </div>
@@ -213,6 +213,7 @@ function applyLetterhead(content, visualIdentity, title) {
         font-size: 13px;
         line-height: 1.7;
         color: #334155;
+        text-align: ${visualIdentity.textAlign || 'left'};
       }
       .document-body .contract-title {
         color: #0f172a;
@@ -243,8 +244,8 @@ function applyLetterhead(content, visualIdentity, title) {
       <div class="header-container">
         <div class="header-brand">
           ${logoUrl 
-            ? `<img src="${xss(logoUrl)}" alt="Logo" style="max-height: 40px;" />` 
-            : `<div class="header-logo-box">${title.charAt(0).toUpperCase()}</div>`
+            ? `<img src="${logoUrl}" alt="Logo" style="max-height: 40px;" />` 
+            : ''
           }
           <h1 class="header-title">${xss(headerText || title)}</h1>
         </div>
@@ -308,6 +309,7 @@ function applyLetterhead(content, visualIdentity, title) {
         font-size: 13.5px;
         line-height: 1.75;
         color: #1e293b;
+        text-align: ${visualIdentity.textAlign || 'left'};
       }
       .document-body .contract-title {
         color: ${primaryColor};
@@ -340,7 +342,7 @@ function applyLetterhead(content, visualIdentity, title) {
           <h1 class="corporate-title">${xss(headerText || title)}</h1>
           <div class="corporate-sub">Modelo Corporativo Padrão</div>
         </div>
-        ${logoUrl ? `<img src="${xss(logoUrl)}" alt="Logo" style="max-height: 45px; filter: brightness(0) invert(1);" />` : ''}
+        ${logoUrl ? `<img src="${logoUrl}" alt="Logo" style="max-height: 45px; filter: brightness(0) invert(1);" />` : ''}
       </div>
     `;
     footerHtml = `
@@ -411,6 +413,7 @@ function applyLetterhead(content, visualIdentity, title) {
         font-size: 14px;
         line-height: 1.8;
         color: #0f172a;
+        text-align: ${visualIdentity.textAlign || 'left'};
       }
       .document-body .contract-title {
         color: ${primaryColor};
@@ -441,7 +444,7 @@ function applyLetterhead(content, visualIdentity, title) {
     `;
     headerHtml = `
       <div class="header-container">
-        ${logoUrl ? `<img src="${xss(logoUrl)}" alt="Logo" style="max-height: 45px; margin-bottom: 12px;" />` : ''}
+        ${logoUrl ? `<img src="${logoUrl}" alt="Logo" style="max-height: 45px; margin-bottom: 12px;" />` : ''}
         <h1 class="header-title">${xss(headerText || title)}</h1>
         <div class="header-line"></div>
       </div>
@@ -449,6 +452,184 @@ function applyLetterhead(content, visualIdentity, title) {
     footerHtml = `
       <div class="footer-container">
         <div>${xss(footerText || 'Executado e assinado via plataforma digital DocGenerator.')}</div>
+      </div>
+      </div>
+    `;
+
+  } else if (theme === 'ultra') {
+    themeStyles = `
+      body {
+        font-family: ${selectedFont};
+        color: #0f172a;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+      }
+      .page {
+        ${backgroundStyle}
+        width: 210mm;
+        min-height: 297mm;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        padding: calc(${margins.top} + 20px) calc(${margins.right} + 20px) calc(${margins.bottom} + 40px) calc(${margins.left} + 20px);
+        box-sizing: border-box;
+        position: relative;
+        background-color: #ffffff;
+      }
+      .ultra-top-left-accent {
+        position: absolute;
+        top: 0;
+        left: 40px;
+        width: 25px;
+        height: 140px;
+        background-color: ${primaryColor};
+      }
+      .ultra-right-accent {
+        position: absolute;
+        top: 60%;
+        right: 0;
+        width: 12px;
+        height: 180px;
+        background-color: ${primaryColor};
+        transform: translateY(-50%);
+      }
+      .ultra-bottom-left-accent {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 15px;
+        height: 120px;
+        background-color: ${primaryColor};
+      }
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 20px;
+        margin-bottom: 25px;
+        position: relative;
+        z-index: 10;
+        padding-left: 20px;
+      }
+      .header-left {
+        max-width: 65%;
+      }
+      .header-right {
+        text-align: right;
+        font-size: 9px;
+        color: #94a3b8;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        border-right: 1px solid #1e293b;
+        padding-right: 15px;
+        padding-bottom: 5px;
+      }
+      .header-title {
+        font-size: 28px;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 15px 0 8px 0;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        line-height: 1.1;
+      }
+      .header-subtitle {
+        font-size: 11px;
+        color: #94a3b8;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .ultra-divider {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        margin-bottom: 40px;
+      }
+      .ultra-divider .primary-line {
+        width: 100px;
+        height: 2px;
+        background-color: ${primaryColor};
+      }
+      .ultra-divider .gray-line {
+        flex: 1;
+        height: 1px;
+        background-color: #e2e8f0;
+      }
+      .document-body {
+        font-size: 13px;
+        line-height: 1.8;
+        color: #334155;
+        text-align: ${visualIdentity.textAlign || 'left'};
+        padding-left: 20px;
+      }
+      .document-body .contract-title {
+        color: #0f172a;
+        font-family: ${selectedFont};
+        letter-spacing: 1px;
+      }
+      .document-body .clause-title {
+        color: #0f172a;
+        font-family: ${selectedFont};
+        letter-spacing: 1px;
+      }
+      .footer-container {
+        position: absolute;
+        bottom: 50px;
+        left: calc(${margins.left} + 20px);
+        right: calc(${margins.right} + 20px);
+        display: flex;
+        align-items: flex-end;
+      }
+      .footer-block {
+        font-size: 10px;
+        color: #64748b;
+      }
+      .footer-block strong {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .footer-line {
+        flex: 1;
+        height: 1px;
+        background-color: #0f172a;
+        margin-left: 30px;
+        margin-bottom: 8px;
+      }
+    `;
+    extraWrapperStart = `
+      <div class="ultra-top-left-accent"></div>
+      <div class="ultra-right-accent"></div>
+      <div class="ultra-bottom-left-accent"></div>
+    `;
+    headerHtml = `
+      <div class="header-container">
+        <div class="header-left">
+          ${logoUrl ? `<img src="${logoUrl}" alt="Logo" style="max-height: 60px; margin-bottom: 15px; display: block;" />` : ''}
+          <h1 class="header-title">${xss(headerText || title)}</h1>
+          <div class="header-subtitle">DOCUMENTO OFICIAL</div>
+        </div>
+        <div class="header-right">
+          <div>${new Date().toLocaleDateString('pt-BR')}</div>
+        </div>
+      </div>
+      <div class="ultra-divider">
+        <div class="primary-line"></div>
+        <div class="gray-line"></div>
+      </div>
+    `;
+    footerHtml = `
+      <div class="footer-container">
+        <div class="footer-block">
+          <strong>${xss(headerText || title)}</strong>
+          <div>${xss(footerText || 'Documento eletrônico')}</div>
+        </div>
+        <div class="footer-line"></div>
       </div>
     `;
 
@@ -516,7 +697,7 @@ function applyLetterhead(content, visualIdentity, title) {
     `;
     headerHtml = `
       <div class="header-container">
-        ${logoUrl ? `<div class="header-logo-container"><img src="${xss(logoUrl)}" alt="Logo" style="max-height: 30px; filter: grayscale(100%);" /></div>` : ''}
+        ${logoUrl ? `<div class="header-logo-container"><img src="${logoUrl}" alt="Logo" style="max-height: 30px; filter: grayscale(100%);" /></div>` : ''}
         <h1 class="header-title">${xss(headerText || title)}</h1>
         <div class="header-divider"></div>
       </div>
